@@ -1,6 +1,9 @@
 # GENERAL
 **/build/*
 
+# FOLDER
+image/
+
 # EDITOR
 .vscode
 .VSCodeCounter
