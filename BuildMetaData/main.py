@@ -1,5 +1,9 @@
+from .gui.root_window import Windows
+
+
 def main():
-    print("HELLO")
+    gui = Windows()
+    gui.mainloop()
 
 
 if __name__ == "__main__":
