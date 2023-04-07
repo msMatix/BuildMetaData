@@ -25,3 +25,4 @@ class FileExplorerPage(tk.Frame):
     def browse_files(self):
         self._selected_file_path = filedialog.askopenfilename()
         self.selected_file_label.config(text=self.selected_file_path)
+        self.destroy()
