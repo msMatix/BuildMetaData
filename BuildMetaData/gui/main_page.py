@@ -13,3 +13,10 @@ class MainPage(tk.Frame):
             command=lambda: controller.show_frame("ConfigPage"),
         )
         switch_window_button.pack(side="bottom", fill=tk.X)
+
+        button_file_explorer = tk.Button(
+            self,
+            text="FileExplorer",
+            command=lambda: controller.show_frame("FileExplorerPage"),
+        )
+        button_file_explorer.pack(side="bottom", fill=tk.X)

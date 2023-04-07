@@ -2,9 +2,10 @@ import sys
 import tkinter as tk
 
 from .config_page import ConfigPage
+from .file_explorer_page import FileExplorerPage
 from .main_page import MainPage
 
-available_pages = (MainPage, ConfigPage)
+available_pages = (MainPage, ConfigPage, FileExplorerPage)
 
 
 class Windows(tk.Tk):
