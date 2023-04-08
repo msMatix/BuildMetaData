@@ -31,21 +31,30 @@ class ImageExplorerPage(tk.Frame):
         )
         button_next.pack(side="left")
 
+        button_change_path = tk.Button(
+            self,
+            text="PATH",
+            command=lambda: controller.show_frame("FileExplorerPage"),
+            width=30,
+            height=5,
+        )
+        button_change_path.pack(side="left")
+
         self.image_folder = ""
         self.images = []
         self.names = []
         self.current_idx = 0
+        self.image_labels = []
+        self.name_labels = []
 
-    # TODO: make general after image explorer works
     def tkraise(self, *args, **kwargs):
         super().tkraise(*args, **kwargs)
+        self.set_back_to_start_condition()
         self.image_folder = path_model.get_path()
         self.get_images()
         self.show(self.current_idx)
 
     def get_images(self):
-        global image_labels, name_labels
-
         for filepath in Path(self.image_folder).iterdir():
             image_path = Image.open(filepath)
             image = ImageTk.PhotoImage(image_path)
@@ -54,25 +63,33 @@ class ImageExplorerPage(tk.Frame):
             self.images.append(image)
             self.names.append(image_name)
 
-        image_labels, name_labels = [], []
+        self.image_labels, self.name_labels = [], []
         for i, (img, name) in enumerate(zip(self.images, self.names)):
             image_label = tk.Label(self, image=img)
             image_label.pack(side="left")
-            image_labels.append(image_label)
+            self.image_labels.append(image_label)
 
             name_label = tk.Label(self, text=name)
             name_label.pack(side="left")
-            name_labels.append(name_label)
-
+            self.name_labels.append(name_label)
             self.hide(i)
 
+    def set_back_to_start_condition(self):
+        # check if the page is called the second time or so
+        if self.current_idx:
+            self.hide(self.current_idx)
+
+        self.current_idx = 0
+        self.images.clear()
+        self.names.clear()
+
     def hide(self, i):
-        image_labels[i].pack_forget()
-        name_labels[i].pack_forget()
+        self.image_labels[i].pack_forget()
+        self.name_labels[i].pack_forget()
 
     def show(self, i):
-        image_labels[i].pack()
-        name_labels[i].pack()
+        self.image_labels[i].pack()
+        self.name_labels[i].pack()
 
     def shift(self, direction):
         self.hide(self.current_idx)
