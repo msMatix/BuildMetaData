@@ -1,28 +1,28 @@
 import tkinter as tk
 from tkinter import filedialog
 
+from ..common import path_model
+
 
 class FileExplorerPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="File Explorer Page")
+        label = tk.Label(self, text="Main Page")
         label.pack(padx=10, pady=10)
 
-        file_explorer_button = tk.Button(
+        # open file explorer to get the correct path
+        button_file_explorer = tk.Button(
             self, text="Browse Files", command=self.browse_files
         )
-        file_explorer_button.pack(side="top", fill=tk.X)
+        button_file_explorer.pack(side="top")
 
         self.selected_file_label = tk.Label(self, text="")
         self.selected_file_label.pack()
-
-        self._selected_file_path = ""
-
-    @property
-    def selected_file_path(self):
-        return self._selected_file_path
+        self.controller = controller
 
     def browse_files(self):
-        self._selected_file_path = filedialog.askopenfilename()
-        self.selected_file_label.config(text=self.selected_file_path)
-        self.destroy()
+        file_path = filedialog.askdirectory()
+        path_model.set_path(file_path)
+
+        self.selected_file_label.config(text=file_path)
+        self.controller.show_frame("ImageExplorerPage")

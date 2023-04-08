@@ -53,19 +53,3 @@ class ImageMetaModel:
             "attack_speed": self.attack_speed,
         }
         return json.dumps(meta_data)
-
-
-if __name__ == "__main__":
-    data = ImageMetaModel(
-        "max",
-        "bla bli",
-        "https:go",
-        ERarity.LEGENDARY.value,
-        EWeaponType.GUN.value,
-        EArmorType.HELMET.value,
-        10,
-        10,
-        10,
-        10,
-    )
-    print(data.get_meta_data_of_nft())
