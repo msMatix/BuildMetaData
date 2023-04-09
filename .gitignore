@@ -3,6 +3,7 @@
 
 # FOLDER
 image/
+metadata/
 
 # EDITOR
 .vscode
