@@ -1,5 +1,8 @@
 import json
+import os
 from dataclasses import dataclass
+
+from ..common import FILE_FORMAT, FOLDER_NAME, PATH_META_DATA
 
 
 @dataclass
@@ -14,6 +17,7 @@ class ImageMetaModel:
     range: int = 0
     movement_speed: int = 0
     attack_speed: int = 0
+    index: int = 0
 
     def generate_meta_data(self) -> str:
         meta_data = {
@@ -31,5 +35,14 @@ class ImageMetaModel:
         return json.dumps(meta_data)
 
     def save(self):
-        # TODO: make a correct save function
-        print("HELLO")
+        data_json_format = self.generate_meta_data()
+        file_name = str(self.index)
+
+        if not os.path.exists(FOLDER_NAME):
+            os.mkdir(FOLDER_NAME)
+        with open(
+            PATH_META_DATA + file_name + FILE_FORMAT,
+            "w",
+            encoding="utf-8",
+        ) as f:
+            json.dump(data_json_format, f)

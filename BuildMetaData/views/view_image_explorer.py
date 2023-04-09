@@ -5,7 +5,6 @@ from tkinter import filedialog
 
 from PIL import Image, ImageTk
 
-from ..models.meta_model import ImageMetaModel
 from .meta_data_types import (
     EArmorType,
     EAttackSpeed,
@@ -258,22 +257,24 @@ class ImageExplorerView(tk.Frame):
 
     ################################################################################
     # GENERATE META-DATA
-    # TODO: should be a function of the controller
     def save_meta_data_in_file(self):
-        meta_data = ImageMetaModel(
-            self.input_field_name.get(),
-            self.input_field_description.get(),
-            self.input_field_url.get(),
-            str(self.selected_option_rarity.get()),
-            str(self.selected_option_weapon_type.get()),
-            str(self.selected_option_armor_type.get()),
-            int(self.selected_option_damage.get()),
-            int(self.selected_option_range.get()),
-            int(self.selected_option_movement_speed.get()),
-            int(self.selected_option_attack_speed.get()),
+        data = list(
+            [
+                self.input_field_name.get(),
+                self.input_field_description.get(),
+                self.input_field_url.get(),
+                str(self.selected_option_rarity.get()),
+                str(self.selected_option_weapon_type.get()),
+                str(self.selected_option_armor_type.get()),
+                int(self.selected_option_damage.get()),
+                int(self.selected_option_range.get()),
+                int(self.selected_option_movement_speed.get()),
+                int(self.selected_option_attack_speed.get()),
+                self.current_idx,
+            ]
         )
-        # TODO: save file with controller function
-        print(meta_data.generate_meta_data())
+        if self.controller:
+            self.controller.save_meta_data_on_disk(data)
 
     def reset_dropdown_menues(self):
         self.selected_option_weapon_type.set(EWeaponType.NONE.value)
