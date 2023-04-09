@@ -1,6 +1,7 @@
 import re
 import tkinter as tk
 from pathlib import Path
+from tkinter import filedialog
 
 from PIL import Image, ImageTk
 
@@ -44,8 +45,10 @@ class ImageExplorerPage(tk.Frame):
         super().tkraise(*args, **kwargs)
         self.reset_image_explorer()
         self.image_folder = path_model.get_path()
-        self.get_images()
-        self.show(self.current_idx)
+
+        if self.image_folder:
+            self.get_images()
+            self.show(self.current_idx)
 
     def create_widgets_image_explorer(self, controller):
         button_prev = tk.Button(
@@ -69,7 +72,8 @@ class ImageExplorerPage(tk.Frame):
         button_change_path = tk.Button(
             self,
             text="PATH",
-            command=lambda: controller.show_frame("FileExplorerPage"),
+            # command=lambda: controller.show_frame("FileExplorerPage"),
+            command=lambda: self.browse_files(),
             width=30,
             height=5,
         )
@@ -257,6 +261,7 @@ class ImageExplorerPage(tk.Frame):
             int(self.selected_option_movement_speed.get()),
             int(self.selected_option_attack_speed.get()),
         )
+        # TODO: save file
         print(meta_data.generate_meta_data())
 
     def reset_dropdown_menues(self):
@@ -267,3 +272,10 @@ class ImageExplorerPage(tk.Frame):
         self.selected_option_range.set(str(ERange.NONE.value))
         self.selected_option_movement_speed.set(str(EMovementSpeed.NONE.value))
         self.selected_option_attack_speed.set(str(EAttackSpeed.NONE.value))
+
+    ################################################################################
+    # FILE EXPLORER
+    def browse_files(self):
+        file_path = filedialog.askdirectory()
+        path_model.set_path(file_path)
+        self.tkraise()

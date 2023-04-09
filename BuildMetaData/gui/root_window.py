@@ -1,10 +1,9 @@
 import sys
 import tkinter as tk
 
-from .file_explorer_page import FileExplorerPage
 from .image_explorer_page import ImageExplorerPage
 
-available_pages = (FileExplorerPage, ImageExplorerPage)
+available_pages = (ImageExplorerPage,)
 
 
 class Windows(tk.Tk):
@@ -23,7 +22,7 @@ class Windows(tk.Tk):
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame("FileExplorerPage")
+        self.show_frame("ImageExplorerPage")
 
     def show_frame(self, page):
         page_to_show = getattr(sys.modules[__name__], page)
