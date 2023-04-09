@@ -5,7 +5,6 @@ from tkinter import filedialog
 
 from PIL import Image, ImageTk
 
-from ..common import path_model
 from ..models.meta_model import ImageMetaModel
 from .meta_data_types import (
     EArmorType,
@@ -18,13 +17,12 @@ from .meta_data_types import (
 )
 
 
-class ImageExplorerPage(tk.Frame):
-    def __init__(self, parent, controller):
+class ImageExplorerView(tk.Frame):
+    def __init__(self, parent):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="Image Page")
         label.pack(padx=10, pady=10)
 
-        self.controller = controller
         # image explorer
         self.current_idx = 0
         self.image_folder = ""
@@ -37,20 +35,33 @@ class ImageExplorerPage(tk.Frame):
         self.selected_option_range = tk.StringVar(self)
         self.selected_option_movement_speed = tk.StringVar(self)
         self.selected_option_attack_speed = tk.StringVar(self)
+        # controller
+        self.controller = None
 
-        self.create_widgets_image_explorer(self.controller)
+        self.create_widgets_image_explorer()
         self.create_widgets_for_meta_data()
 
     def tkraise(self, *args, **kwargs):
         super().tkraise(*args, **kwargs)
         self.reset_image_explorer()
-        self.image_folder = path_model.get_path()
+
+        if self.controller:
+            self.image_folder = self.controller.get_path_to_images()
 
         if self.image_folder:
             self.get_images()
             self.show(self.current_idx)
 
-    def create_widgets_image_explorer(self, controller):
+    def set_controller(self, controller):
+        self.controller = controller
+
+    def show_error(self, message):
+        print(message)
+
+    def show_success(self, message):
+        print(message)
+
+    def create_widgets_image_explorer(self):
         button_prev = tk.Button(
             self,
             text="<< PREV",
@@ -72,7 +83,6 @@ class ImageExplorerPage(tk.Frame):
         button_change_path = tk.Button(
             self,
             text="PATH",
-            # command=lambda: controller.show_frame("FileExplorerPage"),
             command=lambda: self.browse_files(),
             width=30,
             height=5,
@@ -248,6 +258,7 @@ class ImageExplorerPage(tk.Frame):
 
     ################################################################################
     # GENERATE META-DATA
+    # TODO: should be a function of the controller
     def save_meta_data_in_file(self):
         meta_data = ImageMetaModel(
             self.input_field_name.get(),
@@ -261,7 +272,7 @@ class ImageExplorerPage(tk.Frame):
             int(self.selected_option_movement_speed.get()),
             int(self.selected_option_attack_speed.get()),
         )
-        # TODO: save file
+        # TODO: save file with controller function
         print(meta_data.generate_meta_data())
 
     def reset_dropdown_menues(self):
@@ -277,5 +288,6 @@ class ImageExplorerPage(tk.Frame):
     # FILE EXPLORER
     def browse_files(self):
         file_path = filedialog.askdirectory()
-        path_model.set_path(file_path)
+        if self.controller:
+            self.controller.save_path_to_images(file_path)
         self.tkraise()

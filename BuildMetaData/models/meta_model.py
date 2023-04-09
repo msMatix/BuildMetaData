@@ -4,16 +4,16 @@ from dataclasses import dataclass
 
 @dataclass
 class ImageMetaModel:
-    name: str
-    description: str
-    image_url: str
-    rarity: str
-    weapon_type: str
-    armor_type: str
-    damage: int
-    range: int
-    movement_speed: int
-    attack_speed: int
+    name: str = ""
+    description: str = ""
+    image_url: str = ""
+    rarity: str = ""
+    weapon_type: str = ""
+    armor_type: str = ""
+    damage: int = 0
+    range: int = 0
+    movement_speed: int = 0
+    attack_speed: int = 0
 
     def generate_meta_data(self) -> str:
         meta_data = {
@@ -29,3 +29,7 @@ class ImageMetaModel:
             "attack_speed": self.attack_speed,
         }
         return json.dumps(meta_data)
+
+    def save(self):
+        # TODO: make a correct save function
+        print("HELLO")

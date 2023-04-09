@@ -1,9 +1,9 @@
-from .gui.root_window import Windows
+from .app import App
 
 
 def main():
-    gui = Windows()
-    gui.mainloop()
+    app = App()
+    app.mainloop()
 
 
 if __name__ == "__main__":
