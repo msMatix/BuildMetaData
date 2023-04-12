@@ -4,6 +4,7 @@
 # FOLDER
 image/
 metadata/
+image_bg/
 
 # EDITOR
 .vscode

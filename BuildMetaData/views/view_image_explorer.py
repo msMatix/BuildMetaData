@@ -54,9 +54,11 @@ class ImageExplorerView(tk.Frame):
     def set_controller(self, controller):
         self.controller = controller
 
+    # TODO: show log message in app
     def show_error(self, message):
         print(message)
 
+    # TODO: show log message in app
     def show_success(self, message):
         print(message)
 
@@ -256,7 +258,7 @@ class ImageExplorerView(tk.Frame):
         self.show(self.current_idx)
 
     ################################################################################
-    # GENERATE META-DATA
+    # META-DATA
     def save_meta_data_in_file(self):
         data = list(
             [
