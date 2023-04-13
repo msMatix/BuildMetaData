@@ -32,7 +32,9 @@ class AppController:
             self.views[ImageExplorerView].show_error("Please select a rarity.")
             return
         self.__save_image_data(
-            color_of_rarity[self.meta_model.rarity], str(self.meta_model.index)
+            color_of_rarity[self.meta_model.rarity],
+            str(self.meta_model.index),
+            self.meta_model.image_path,
         )
 
         self.views[ImageExplorerView].show_success("SUCCESS")
@@ -44,14 +46,13 @@ class AppController:
         except Exception as e:
             self.views[ImageExplorerView].show_error(f"Error: {e}")
 
-    def __save_image_data(self, rarity, idx):
+    def __save_image_data(self, rarity, idx, image_path):
         if not os.path.exists(PATH_IMAGE_BG_STORE):
             os.mkdir(PATH_IMAGE_BG_STORE)
 
         cwd = os.getcwd()
         image_path_bg = os.path.join(cwd, f"{PATH_IMAGES_BG}/{rarity}.{IMAGE_FORMAT}")
-        # TODO: Store path sould be a parameter of item -> BuildMetaData muss weg
-        image_path_item = os.path.join(cwd, f"BuildMetaData/{idx}.{IMAGE_FORMAT}")
+        image_path_item = os.path.join(cwd, f"{image_path}.{IMAGE_FORMAT}")
         image_path_output = os.path.join(
             cwd, f"{PATH_IMAGE_BG_STORE}/{idx}.{IMAGE_FORMAT}"
         )

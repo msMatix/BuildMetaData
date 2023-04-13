@@ -17,7 +17,9 @@ class ImageMetaModel:
     range: int = 0
     movement_speed: int = 0
     attack_speed: int = 0
+    # DATA only for app
     index: int = 0
+    image_path: str = ""
 
     def generate_meta_data(self) -> str:
         meta_data = {

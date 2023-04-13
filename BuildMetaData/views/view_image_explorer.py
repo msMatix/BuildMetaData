@@ -25,7 +25,14 @@ class ImageExplorerView(tk.Frame):
         # image explorer
         self.current_idx = 0
         self.image_folder = ""
-        self.images, self.names, self.image_labels, self.name_labels = [], [], [], []
+        self.image_path = ""
+        (
+            self.images,
+            self.names,
+            self.image_labels,
+            self.name_labels,
+            self.full_names,
+        ) = ([], [], [], [], [])
         # meta data
         self.selected_option_weapon_type = tk.StringVar(self)
         self.selected_option_armor_type = tk.StringVar(self)
@@ -222,6 +229,7 @@ class ImageExplorerView(tk.Frame):
 
             self.images.append(image)
             self.names.append(image_name)
+            self.full_names.append(filepath)
 
         self.image_labels, self.name_labels = [], []
         for i, (img, name) in enumerate(zip(self.images, self.names)):
@@ -250,6 +258,7 @@ class ImageExplorerView(tk.Frame):
     def show(self, i):
         self.image_labels[i].pack()
         self.name_labels[i].pack()
+        self.image_path = self.full_names[i]
 
     def shift(self, direction):
         self.reset_dropdown_menues()
@@ -273,6 +282,7 @@ class ImageExplorerView(tk.Frame):
                 int(self.selected_option_movement_speed.get()),
                 int(self.selected_option_attack_speed.get()),
                 self.current_idx,
+                self.image_path,
             ]
         )
         if self.controller:
