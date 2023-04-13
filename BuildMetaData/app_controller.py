@@ -25,24 +25,26 @@ class AppController:
         self.views = views
 
     # META DATA MODEL
-    def save_meta_data_on_disk(self, data):
+    def save_data(self, data):
+        self.__save_meta_data(data)
+
+        if self.meta_model.rarity == "NONE":
+            self.views[ImageExplorerView].show_error("Please select a rarity.")
+            return
+        self.__save_image_data(
+            color_of_rarity[self.meta_model.rarity], str(self.meta_model.index)
+        )
+
+        self.views[ImageExplorerView].show_success("SUCCESS")
+
+    def __save_meta_data(self, data):
         try:
             self.meta_model = ImageMetaModel(*data)
             self.meta_model.save()
-
-            if self.meta_model.rarity == "NONE":
-                self.views[ImageExplorerView].show_error("Please select a rarity.")
-                return
-            self.save_image_with_background(
-                color_of_rarity[self.meta_model.rarity], str(self.meta_model.index)
-            )
-
-            self.views[ImageExplorerView].show_success("SUCCESS")
-
         except Exception as e:
             self.views[ImageExplorerView].show_error(f"Error: {e}")
 
-    def save_image_with_background(self, rarity, idx):
+    def __save_image_data(self, rarity, idx):
         if not os.path.exists(PATH_IMAGE_BG_STORE):
             os.mkdir(PATH_IMAGE_BG_STORE)
 

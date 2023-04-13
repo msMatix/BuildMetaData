@@ -276,7 +276,7 @@ class ImageExplorerView(tk.Frame):
             ]
         )
         if self.controller:
-            self.controller.save_meta_data_on_disk(data)
+            self.controller.save_data(data)
 
     def reset_dropdown_menues(self):
         self.selected_option_weapon_type.set(EWeaponType.NONE.value)
