@@ -85,7 +85,7 @@ class AppController:
             # TODO: show log message in app
             self.views[ImageExplorerView].show_success("SUCCESS")
 
-        except Exception as e:
+        except Exception as e:  # pragma no cover
             # TODO: show log message in app
             self.views[ImageExplorerView].show_error(f"Error {e} occured.")
 
