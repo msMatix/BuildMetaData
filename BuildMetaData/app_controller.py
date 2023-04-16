@@ -31,6 +31,7 @@ class AppController:
         if self.meta_model.rarity == "NONE":
             self.views[ImageExplorerView].show_error("Please select a rarity.")
             return
+
         self.__save_image_data(
             color_of_rarity[self.meta_model.rarity],
             str(self.meta_model.index),
@@ -44,7 +45,7 @@ class AppController:
             self.meta_model = ImageMetaModel(*data)
             self.meta_model.save()
         except Exception as e:
-            self.views[ImageExplorerView].show_error(f"Error: {e}")
+            self.views[ImageExplorerView].show_error(f"error: {e}")
 
     def __save_image_data(self, rarity, idx, image_path):
         if not os.path.exists(PATH_IMAGE_BG_STORE):
@@ -63,30 +64,23 @@ class AppController:
             img_bg.paste(img_item, (0, 0), mask=img_item)
             img_bg.save(image_path_output, format="PNG")
 
-            # TODO: show log message in app
-            self.views[ImageExplorerView].show_success("SUCCESS")
         except FileNotFoundError:
-            # TODO: show log message in app
             self.views[ImageExplorerView].show_error(
                 "Error: The image file cannot be found."
             )
-        except IOError:
-            # TODO: show log message in app
+        except IOError:  # pragma no cover
             self.views[ImageExplorerView].show_error(
-                "An IOError occured while opening the image file."
+                "Error: An IOError occured while opening the image file."
             )
-        except Exception as e:
+        except Exception as e:  # pragma no cover
             self.views[ImageExplorerView].show_error(f"Unknown Error occured: {e}.")
 
     # PATH MODEL
     def save_path_to_images(self, path):
         try:
             self.path_model.save_path(path)
-            # TODO: show log message in app
-            self.views[ImageExplorerView].show_success("SUCCESS")
 
         except Exception as e:  # pragma no cover
-            # TODO: show log message in app
             self.views[ImageExplorerView].show_error(f"Error {e} occured.")
 
     def get_path_to_images(self):

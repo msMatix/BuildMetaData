@@ -40,7 +40,7 @@ class ImageMetaModel:
         data_json_format = self.generate_meta_data()
         file_name = str(self.index)
 
-        if not os.path.exists(FOLDER_NAME):
+        if not os.path.exists(FOLDER_NAME):  # pragma no cover
             os.mkdir(FOLDER_NAME)
         with open(
             PATH_META_DATA + file_name + FILE_FORMAT,
