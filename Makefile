@@ -1,14 +1,14 @@
 .PHONY: run
 run:
-	# textual run "calculator.app:CalculatorApp"
+	python3 -m "BuildMetaData.main"
 
-.PHONY: dev
-dev:
-	# while true; do textual run --dev "calculator.app:CalculatorApp"; done
+.PHONY: test
+test:
+	python3 -m pytest -s tests/
 
-.PHONY: debug
-debug:
-	# textual console
+.PHONY: cov
+cov:
+	python3 -m pytest tests/ --cov-report term-missing:skip-covered --cov-config pytest.ini --cov=. tests/ -vv
 
 .PHONY: env
 env:
