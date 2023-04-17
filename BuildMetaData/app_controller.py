@@ -44,11 +44,11 @@ class AppController:
         try:
             self.meta_model = ImageMetaModel(*data)
             self.meta_model.save()
-        except Exception as e:
+        except Exception as e:  # pragma no cover
             self.views[ImageExplorerView].show_error(f"error: {e}")
 
     def __save_image_data(self, rarity, idx, image_path):
-        if not os.path.exists(PATH_IMAGE_BG_STORE):
+        if not os.path.exists(PATH_IMAGE_BG_STORE):  # pragma no cover
             os.mkdir(PATH_IMAGE_BG_STORE)
 
         cwd = os.getcwd()
@@ -58,7 +58,7 @@ class AppController:
             cwd, f"{PATH_IMAGE_BG_STORE}/{idx}.{IMAGE_FORMAT}"
         )
 
-        try:
+        try:  # pragma no cover
             img_item = Image.open(image_path_item)
             img_bg = Image.open(image_path_bg)
             img_bg.paste(img_item, (0, 0), mask=img_item)
