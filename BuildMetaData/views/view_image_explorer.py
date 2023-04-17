@@ -44,6 +44,11 @@ class ImageExplorerView(tk.Frame):
         # controller
         self.controller = None
 
+        # message for show_error/success
+        self.message_label = tk.Label(self, text="", foreground="red")
+        self.message_label.config(width=10)
+        self.message_label.place(x=200, y=500, anchor="center")
+
         self.create_widgets_image_explorer()
         self.create_widgets_for_meta_data()
 
@@ -61,13 +66,20 @@ class ImageExplorerView(tk.Frame):
     def set_controller(self, controller):
         self.controller = controller
 
-    # TODO: show log message in app
     def show_error(self, message):
+        self.message_label["text"] = message
+        self.message_label["foreground"] = "red"
+        self.message_label.after(3000, self.hide_message)
         print(message)
 
-    # TODO: show log message in app
     def show_success(self, message):
+        self.message_label["text"] = message
+        self.message_label["foreground"] = "green"
+        self.message_label.after(3000, self.hide_message)
         print(message)
+
+    def hide_message(self):
+        self.message_label["text"] = ""
 
     def create_widgets_image_explorer(self):
         button_prev = tk.Button(
