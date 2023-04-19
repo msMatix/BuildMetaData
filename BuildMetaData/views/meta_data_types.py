@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class EWeaponType(Enum):
-    NONE = "NONE"
+    NONE = ""
     GUN = "GUN"
     BOW = "BOW"
     MELEE = "MELEE"
@@ -10,7 +10,7 @@ class EWeaponType(Enum):
 
 
 class EArmorType(Enum):
-    NONE = "NONE"
+    NONE = ""
     HELMET = "HELMET"
     BRACERS = "BRACERS"
     LEGGINGS = "LEGGINGS"
@@ -19,7 +19,7 @@ class EArmorType(Enum):
 
 
 class ERarity(Enum):
-    NONE = "NONE"
+    NONE = ""
     COMMON = "COMMON"
     UNCOMMON = "UNCOMMON"
     RARE = "RARE"
