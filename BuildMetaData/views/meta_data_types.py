@@ -25,6 +25,7 @@ class ERarity(Enum):
     RARE = "RARE"
     EPIC = "EPIC"
     LEGENDARY = "LEGENDARY"
+    UNIQUE = "UNIQUE"
 
 
 class EDamage(Enum):

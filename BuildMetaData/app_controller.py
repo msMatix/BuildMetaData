@@ -9,11 +9,12 @@ from .views.view_image_explorer import ImageExplorerView
 
 color_of_rarity = dict(
     {
-        ERarity.COMMON.value: "blue",
+        ERarity.COMMON.value: "grey",
         ERarity.UNCOMMON.value: "green",
-        ERarity.RARE.value: "yellow",
-        ERarity.EPIC.value: "orange",
-        ERarity.LEGENDARY.value: "red",
+        ERarity.RARE.value: "blue",
+        ERarity.EPIC.value: "purple",
+        ERarity.LEGENDARY.value: "orange",
+        ERarity.UNIQUE.value: "red",
     }
 )
 
