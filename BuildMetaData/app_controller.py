@@ -27,24 +27,26 @@ class AppController:
 
     # META DATA MODEL
     def save_data(self, data):
-        self.__save_meta_data(data)
+        res_meta_data = self.__save_meta_data(data)
 
         if self.meta_model.rarity == "":
             self.views[ImageExplorerView].show_error("Please select a rarity.")
             return
 
-        self.__save_image_data(
+        res_image_date = self.__save_image_data(
             color_of_rarity[self.meta_model.rarity],
             str(self.meta_model.index),
             self.meta_model.image_path,
         )
 
-        self.views[ImageExplorerView].show_success("SUCCESS")
+        if res_meta_data and res_image_date:
+            self.views[ImageExplorerView].show_success("SUCCESS")
 
     def __save_meta_data(self, data):
         try:
             self.meta_model = ImageMetaModel(*data)
             self.meta_model.save()
+            return True
         except Exception as e:  # pragma no cover
             self.views[ImageExplorerView].show_error(f"error: {e}")
 
@@ -64,6 +66,7 @@ class AppController:
             img_bg = Image.open(image_path_bg)
             img_bg.paste(img_item, (0, 0), mask=img_item)
             img_bg.save(image_path_output, format="PNG")
+            return True
 
         except FileNotFoundError:
             self.views[ImageExplorerView].show_error(
