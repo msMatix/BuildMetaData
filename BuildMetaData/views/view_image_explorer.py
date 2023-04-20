@@ -6,13 +6,13 @@ from tkinter import filedialog
 from PIL import Image, ImageTk
 
 from .meta_data_types import (
-    EArmorType,
     EAttackSpeed,
-    EDamage,
-    EMovementSpeed,
-    ERange,
+    EDefense,
+    EEquipmentType,
+    EPower,
     ERarity,
-    EWeaponType,
+    ESpecialEffect,
+    EWeight,
 )
 
 
@@ -34,13 +34,13 @@ class ImageExplorerView(tk.Frame):
             self.full_names,
         ) = ([], [], [], [], [])
         # meta data
-        self.selected_option_weapon_type = tk.StringVar(self)
-        self.selected_option_armor_type = tk.StringVar(self)
+        self.selected_option_equipment_type = tk.StringVar(self)
         self.selected_option_rarity = tk.StringVar(self)
-        self.selected_option_damage = tk.StringVar(self)
-        self.selected_option_range = tk.StringVar(self)
-        self.selected_option_movement_speed = tk.StringVar(self)
+        self.selected_option_power = tk.StringVar(self)
+        self.selected_option_defense = tk.StringVar(self)
+        self.selected_option_weight = tk.StringVar(self)
         self.selected_option_attack_speed = tk.StringVar(self)
+        self.selected_option_special_effect = tk.StringVar(self)
         # controller
         self.controller = None
 
@@ -110,36 +110,23 @@ class ImageExplorerView(tk.Frame):
         button_change_path.pack(side="left")
 
     def create_widgets_for_meta_data(self):
-        # WEAPON TYPE
-        self.selected_option_weapon_type.set(EWeaponType.NONE.value)
-        weapon_type_options = {
-            weapon_type.value: weapon_type.value for weapon_type in EWeaponType
+        # EQUIPMENT TYPE
+        self.selected_option_equipment_type.set(EEquipmentType.NONE.value)
+        equipment_type_options = {
+            equipment_type.value: equipment_type.value
+            for equipment_type in EEquipmentType
         }
-        dropdown_weapon_type = tk.OptionMenu(
-            self, self.selected_option_weapon_type, *weapon_type_options
+        dropdown_equipment_type = tk.OptionMenu(
+            self, self.selected_option_equipment_type, *equipment_type_options
         )
-        dropdown_weapon_type.config(width=10)
-        dropdown_weapon_type.place(x=100, y=100, anchor="center")
+        dropdown_equipment_type.config(width=10)
+        dropdown_equipment_type.place(x=100, y=100, anchor="center")
 
-        label_weapon_type = tk.Label(self, text="Select a weapon type:")
-        label_weapon_type.place(x=100, y=80, anchor="center")
-
-        # ARMOR TYPE
-        self.selected_option_armor_type.set(EArmorType.NONE.value)
-        armor_type_options = {
-            armor_type.value: armor_type.value for armor_type in EArmorType
-        }
-        dropdown_armor_type = tk.OptionMenu(
-            self, self.selected_option_armor_type, *armor_type_options
-        )
-        dropdown_armor_type.config(width=10)
-        dropdown_armor_type.place(x=250, y=100, anchor="center")
-
-        label_armor_type = tk.Label(self, text="Select a armor type:")
-        label_armor_type.place(x=250, y=80, anchor="center")
+        label_equipment_type = tk.Label(self, text="Select a equipment type:")
+        label_equipment_type.place(x=100, y=80, anchor="center")
 
         # RARITY
-        self.selected_option_rarity.set(EArmorType.NONE.value)
+        self.selected_option_rarity.set(EEquipmentType.NONE.value)
         rarity_options = {rarity.value: rarity.value for rarity in ERarity}
         dropdown_rarity = tk.OptionMenu(
             self, self.selected_option_rarity, *rarity_options
@@ -150,45 +137,42 @@ class ImageExplorerView(tk.Frame):
         label_rarity = tk.Label(self, text="Select Rarity:")
         label_rarity.place(x=400, y=80, anchor="center")
 
-        # DAMAGE
-        self.selected_option_damage.set(str(EDamage.NONE.value))
-        damage_options = {damage.value: damage.value for damage in EDamage}
-        dropdown_damage = tk.OptionMenu(
-            self, self.selected_option_damage, *damage_options
+        # POWER
+        self.selected_option_power.set(EPower.NONE.value)
+        power_options = {power.value: power.value for power in EPower}
+        dropdown_power = tk.OptionMenu(self, self.selected_option_power, *power_options)
+        dropdown_power.config(width=10)
+        dropdown_power.place(x=250, y=100, anchor="center")
+
+        label_power = tk.Label(self, text="Select Power:")
+        label_power.place(x=250, y=80, anchor="center")
+
+        # DEFENSE
+        self.selected_option_defense.set(EDefense.NONE.value)
+        defense_options = {defense.value: defense.value for defense in EDefense}
+        dropdown_defense = tk.OptionMenu(
+            self, self.selected_option_defense, *defense_options
         )
-        dropdown_damage.config(width=10)
-        dropdown_damage.place(x=550, y=100, anchor="center")
+        dropdown_defense.config(width=10)
+        dropdown_defense.place(x=100, y=150, anchor="center")
 
-        label_damage = tk.Label(self, text="Select Damage:")
-        label_damage.place(x=550, y=80, anchor="center")
+        label_defense = tk.Label(self, text="Select defense:")
+        label_defense.place(x=100, y=130, anchor="center")
 
-        # RANGE
-        self.selected_option_range.set(str(ERange.NONE.value))
-        range_options = {range.value: range.value for range in ERange}
-        dropdown_range = tk.OptionMenu(self, self.selected_option_range, *range_options)
-        dropdown_range.config(width=10)
-        dropdown_range.place(x=100, y=150, anchor="center")
-
-        label_range = tk.Label(self, text="Select Range:")
-        label_range.place(x=100, y=130, anchor="center")
-
-        # MOVEMENT SPEED
-        self.selected_option_movement_speed.set(str(EMovementSpeed.NONE.value))
-        movement_speed_options = {
-            movement_speed.value: movement_speed.value
-            for movement_speed in EMovementSpeed
-        }
-        dropdown_movement_speed = tk.OptionMenu(
-            self, self.selected_option_movement_speed, *movement_speed_options
+        # WEIGHT SPEED
+        self.selected_option_weight.set(EWeight.NONE.value)
+        weight_options = {weight.value: weight.value for weight in EWeight}
+        dropdown_weight = tk.OptionMenu(
+            self, self.selected_option_weight, *weight_options
         )
-        dropdown_movement_speed.config(width=10)
-        dropdown_movement_speed.place(x=250, y=150, anchor="center")
+        dropdown_weight.config(width=10)
+        dropdown_weight.place(x=250, y=150, anchor="center")
 
-        label_movement_speed = tk.Label(self, text="Select movement speed:")
-        label_movement_speed.place(x=250, y=130, anchor="center")
+        label_weight = tk.Label(self, text="Select weight:")
+        label_weight.place(x=250, y=130, anchor="center")
 
         # ATTACK SPEED
-        self.selected_option_attack_speed.set(str(EAttackSpeed.NONE.value))
+        self.selected_option_attack_speed.set(EAttackSpeed.NONE.value)
         attack_speed_options = {
             attack_speed.value: attack_speed.value for attack_speed in EAttackSpeed
         }
@@ -200,6 +184,21 @@ class ImageExplorerView(tk.Frame):
 
         label_attack_speed = tk.Label(self, text="Select attack speed:")
         label_attack_speed.place(x=400, y=130, anchor="center")
+
+        # SPECIAL ATTACK
+        self.selected_option_special_effect.set(ESpecialEffect.NONE.value)
+        special_effect_options = {
+            special_effect.value: special_effect.value
+            for special_effect in ESpecialEffect
+        }
+        dropdown_special_effect = tk.OptionMenu(
+            self, self.selected_option_special_effect, *special_effect_options
+        )
+        dropdown_special_effect.config(width=10)
+        dropdown_special_effect.place(x=550, y=100, anchor="center")
+
+        label_special_effect = tk.Label(self, text="Select special effect:")
+        label_special_effect.place(x=550, y=80, anchor="center")
 
         # NAME
         self.input_field_name = tk.Entry(self)
@@ -287,12 +286,12 @@ class ImageExplorerView(tk.Frame):
                 self.input_field_description.get(),
                 self.input_field_url.get(),
                 str(self.selected_option_rarity.get()),
-                str(self.selected_option_weapon_type.get()),
-                str(self.selected_option_armor_type.get()),
-                int(self.selected_option_damage.get()),
-                int(self.selected_option_range.get()),
-                int(self.selected_option_movement_speed.get()),
+                str(self.selected_option_equipment_type.get()),
+                int(self.selected_option_power.get()),
+                int(self.selected_option_defense.get()),
+                int(self.selected_option_weight.get()),
                 int(self.selected_option_attack_speed.get()),
+                str(self.selected_option_special_effect.get()),
                 self.current_idx,
                 self.image_path,
             ]
@@ -301,13 +300,13 @@ class ImageExplorerView(tk.Frame):
             self.controller.save_data(data)
 
     def reset_dropdown_menues(self):
-        self.selected_option_weapon_type.set(EWeaponType.NONE.value)
-        self.selected_option_armor_type.set(EArmorType.NONE.value)
-        self.selected_option_rarity.set(EArmorType.NONE.value)
-        self.selected_option_damage.set(str(EDamage.NONE.value))
-        self.selected_option_range.set(str(ERange.NONE.value))
-        self.selected_option_movement_speed.set(str(EMovementSpeed.NONE.value))
-        self.selected_option_attack_speed.set(str(EAttackSpeed.NONE.value))
+        self.selected_option_equipment_type.set(EEquipmentType.NONE.value)
+        self.selected_option_rarity.set(ERarity.NONE.value)
+        self.selected_option_power.set(EPower.NONE.value)
+        self.selected_option_defense.set(EDefense.NONE.value)
+        self.selected_option_weight.set(EWeight.NONE.value)
+        self.selected_option_attack_speed.set(EAttackSpeed.NONE.value)
+        self.selected_option_special_effect.set(ESpecialEffect.NONE.value)
 
     ################################################################################
     # FILE EXPLORER

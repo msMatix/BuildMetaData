@@ -8,6 +8,8 @@ from .fixtures import (
     meta_data_correct,
     meta_data_correct_json,
     meta_data_file_not_found,
+    meta_data_none,
+    meta_data_none_json,
     meta_data_rarity_none,
     mock_app_controller,
     mock_meta_model,
@@ -50,6 +52,17 @@ class TestAppControllerImageModell:
         with open(path_to_file) as f:
             data = json.load(f)
         assert data == json.dumps(meta_data_correct_json)
+
+    def test_okay_save_meta_data_none_input(
+        self, mock_app_controller, meta_data_none, meta_data_none_json
+    ):
+        path_to_file = "./metadata/99999999.json"
+        # update file
+        mock_app_controller.save_data(meta_data_none)
+        # read file
+        with open(path_to_file) as f:
+            data = json.load(f)
+        assert data == json.dumps(meta_data_none_json)
 
     def test_false_no_rarity_selected(self, mock_app_controller, meta_data_rarity_none):
         mock_app_controller.save_data(meta_data_rarity_none)

@@ -29,7 +29,7 @@ class AppController:
     def save_data(self, data):
         self.__save_meta_data(data)
 
-        if self.meta_model.rarity == "NONE":
+        if self.meta_model.rarity == "":
             self.views[ImageExplorerView].show_error("Please select a rarity.")
             return
 

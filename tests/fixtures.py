@@ -50,11 +50,11 @@ def meta_data_correct():
             "image_url",
             "EPIC",
             "GUN",
-            "HELMET",
             1,
             1,
             1,
             1,
+            "fireball",
             99999999,
             "no/path/necessary",
         ]
@@ -69,13 +69,13 @@ def meta_data_rarity_none():
             "DARKFIRE",
             "description",
             "image_url",
-            "NONE",
+            "",
             "GUN",
-            "HELMET",
             1,
             1,
             1,
             1,
+            "fireball",
             99999999,
             "path",
         ]
@@ -92,11 +92,11 @@ def meta_data_file_not_found():
             "image_url",
             "EPIC",
             "GUN",
-            "HELMET",
             1,
             1,
             1,
             1,
+            "fireball",
             99999999,
             "wrong/path/to/image",
         ]
@@ -112,12 +112,52 @@ def meta_data_correct_json():
             "description": "description",
             "image_url": "image_url",
             "rarity": "EPIC",
-            "weapon_type": "GUN",
-            "armor_type": "HELMET",
-            "damage": 1,
-            "range": 1,
-            "movement_speed": 1,
+            "equipment_type": "GUN",
+            "power": 1,
             "attack_speed": 1,
+            "weight": 1,
+            "defense": 1,
+            "special_effect": "fireball",
+        }
+    )
+    return data
+
+
+@pytest.fixture(scope="function")
+def meta_data_none():
+    data = list(
+        [
+            "",
+            "",
+            "",
+            "EPIC",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            99999999,
+            "wrong/path/to/image",
+        ]
+    )
+    return data
+
+
+@pytest.fixture(scope="function")
+def meta_data_none_json():
+    data = dict(
+        {
+            "name": "",
+            "description": "",
+            "image_url": "",
+            "rarity": "EPIC",
+            "equipment_type": "",
+            "power": "",
+            "attack_speed": "",
+            "weight": "",
+            "defense": "",
+            "special_effect": "",
         }
     )
     return data

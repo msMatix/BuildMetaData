@@ -11,12 +11,12 @@ class ImageMetaModel:
     description: str = ""
     image_url: str = ""
     rarity: str = ""
-    weapon_type: str = ""
-    armor_type: str = ""
-    damage: int = 0
-    range: int = 0
-    movement_speed: int = 0
+    equipment_type: str = ""
+    power: int = 0
     attack_speed: int = 0
+    weight: int = 0
+    defense: int = 0
+    special_effect: str = ""
     # DATA only for app
     index: int = 0
     image_path: str = ""
@@ -27,12 +27,12 @@ class ImageMetaModel:
             "description": self.description,
             "image_url": self.image_url,
             "rarity": self.rarity,
-            "weapon_type": self.weapon_type,
-            "armor_type": self.armor_type,
-            "damage": self.damage,
-            "range": self.range,
-            "movement_speed": self.movement_speed,
+            "equipment_type": self.equipment_type,
+            "power": self.power,
             "attack_speed": self.attack_speed,
+            "weight": self.weight,
+            "defense": self.defense,
+            "special_effect": self.special_effect,
         }
         return json.dumps(meta_data)
 
