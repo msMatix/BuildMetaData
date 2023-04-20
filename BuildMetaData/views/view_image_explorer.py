@@ -46,8 +46,8 @@ class ImageExplorerView(tk.Frame):
 
         # message for show_error/success
         self.message_label = tk.Label(self, text="", foreground="red")
-        self.message_label.config(width=10)
-        self.message_label.place(x=200, y=500, anchor="center")
+        self.message_label.config(width=30)
+        self.message_label.place(x=250, y=500, anchor="center")
 
         self.create_widgets_image_explorer()
         self.create_widgets_for_meta_data()
@@ -287,10 +287,10 @@ class ImageExplorerView(tk.Frame):
                 self.input_field_url.get(),
                 str(self.selected_option_rarity.get()),
                 str(self.selected_option_equipment_type.get()),
-                int(self.selected_option_power.get()),
-                int(self.selected_option_defense.get()),
-                int(self.selected_option_weight.get()),
-                int(self.selected_option_attack_speed.get()),
+                str(self.selected_option_power.get()),
+                str(self.selected_option_defense.get()),
+                str(self.selected_option_weight.get()),
+                str(self.selected_option_attack_speed.get()),
                 str(self.selected_option_special_effect.get()),
                 self.current_idx,
                 self.image_path,
