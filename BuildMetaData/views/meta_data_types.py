@@ -3,25 +3,31 @@ from enum import Enum
 
 class EEquipmentType(Enum):
     NONE = ""
-    GUN = "GUN"
-    BOW = "BOW"
-    MELEE = "MELEE"
-    WAND = "WAND"
-    HELMET = "HELMET"
-    BRACERS = "BRACERS"
-    LEGGINGS = "LEGGINGS"
-    CHEST = "CHEST"
-    WAIST = "WAIST"
+    HELMET = ("Helmet",)
+    CHEST_ARMOR = ("ChestArmor",)
+    BRACERS = ("Bracers",)
+    BOOTS = ("Boots",)
+    BOW_2H = ("Bow_2H",)
+    SWORD_2H = ("Sword_2H",)
+    SWORD_1H = ("Sword_1H",)
+    AXE_2H = ("Axe_2H",)
+    AXE_1H = ("Axe_1H",)
+    HAMMER_2H = ("Hammer_2H",)
+    HAMMER_1H = ("Hammer_1H",)
+    LANCE_1H = ("Lance_1H",)
+    GUN_1H = ("Gun_1H",)
+    SHIELD_1H = ("Shield_1H",)
+    WAND_1H = "Wand_1H"
 
 
 class ERarity(Enum):
     NONE = ""
-    COMMON = "COMMON"
-    UNCOMMON = "UNCOMMON"
-    RARE = "RARE"
-    EPIC = "EPIC"
-    LEGENDARY = "LEGENDARY"
-    UNIQUE = "UNIQUE"
+    COMMON = "Common"
+    UNCOMMON = "Uncommen"
+    RARE = "Rare"
+    EPIC = "Epic"
+    LEGENDARY = "Legendary"
+    UNIQUE = "Unique"
 
 
 class EPower(Enum):
