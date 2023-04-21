@@ -2,7 +2,13 @@ import os
 
 from PIL import Image
 
-from .common import IMAGE_FORMAT, PATH_IMAGE_BG_STORE, PATH_IMAGES_BG
+from .common import (
+    IMAGE_FORMAT_PNG,
+    IMAGE_FORMAT_WEBP,
+    PATH_IMAGE_BG_STORE_PNG,
+    PATH_IMAGE_BG_STORE_WEBP,
+    PATH_IMAGES_BG,
+)
 from .models.meta_model import ImageMetaModel
 from .views.meta_data_types import ERarity
 from .views.view_image_explorer import ImageExplorerView
@@ -35,7 +41,7 @@ class AppController:
 
         res_image_date = self.__save_image_data(
             color_of_rarity[self.meta_model.rarity],
-            str(self.meta_model.index),
+            str(self.meta_model.name),
             self.meta_model.image_path,
         )
 
@@ -50,22 +56,34 @@ class AppController:
         except Exception as e:  # pragma no cover
             self.views[ImageExplorerView].show_error(f"error: {e}")
 
-    def __save_image_data(self, rarity, idx, image_path):
-        if not os.path.exists(PATH_IMAGE_BG_STORE):  # pragma no cover
-            os.mkdir(PATH_IMAGE_BG_STORE)
+    def __save_image_data(self, rarity, name, image_path):
+        # create output folders
+        if not os.path.exists(PATH_IMAGE_BG_STORE_PNG):  # pragma no cover
+            os.mkdir(PATH_IMAGE_BG_STORE_PNG)
+        if not os.path.exists(PATH_IMAGE_BG_STORE_WEBP):  # pragma no cover
+            os.mkdir(PATH_IMAGE_BG_STORE_WEBP)
 
         cwd = os.getcwd()
-        image_path_bg = os.path.join(cwd, f"{PATH_IMAGES_BG}/{rarity}.{IMAGE_FORMAT}")
-        image_path_item = os.path.join(cwd, f"{image_path}.{IMAGE_FORMAT}")
-        image_path_output = os.path.join(
-            cwd, f"{PATH_IMAGE_BG_STORE}/{idx}.{IMAGE_FORMAT}"
+        # image path inputs
+        image_path_bg = os.path.join(
+            cwd, f"{PATH_IMAGES_BG}/{rarity}.{IMAGE_FORMAT_PNG}"
+        )
+        image_path_item = os.path.join(cwd, f"{image_path}.{IMAGE_FORMAT_PNG}")
+
+        # image paths outputs
+        image_path_output_png = os.path.join(
+            cwd, f"{PATH_IMAGE_BG_STORE_PNG}/{name}.{IMAGE_FORMAT_PNG}"
+        )
+        image_path_output_webp = os.path.join(
+            cwd, f"{PATH_IMAGE_BG_STORE_PNG}/{name}.{IMAGE_FORMAT_WEBP}"
         )
 
         try:  # pragma no cover
             img_item = Image.open(image_path_item)
             img_bg = Image.open(image_path_bg)
             img_bg.paste(img_item, (0, 0), mask=img_item)
-            img_bg.save(image_path_output, format="PNG")
+            img_bg.save(image_path_output_png, format="PNG")
+            img_bg.save(image_path_output_webp, format="webp")
             return True
 
         except FileNotFoundError:

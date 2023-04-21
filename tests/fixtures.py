@@ -47,7 +47,7 @@ def meta_data_correct():
         [
             "DARKFIRE",
             "description",
-            "image_url",
+            "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE",
             "EPIC",
             "GUN",
             1,
@@ -68,7 +68,7 @@ def meta_data_rarity_none():
         [
             "DARKFIRE",
             "description",
-            "image_url",
+            "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE",
             "",
             "GUN",
             1,
@@ -89,7 +89,7 @@ def meta_data_file_not_found():
         [
             "DARKFIRE",
             "description",
-            "image_url",
+            "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE",
             "EPIC",
             "GUN",
             1,
@@ -110,7 +110,7 @@ def meta_data_correct_json():
         {
             "name": "DARKFIRE",
             "description": "description",
-            "image_url": "image_url",
+            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE.webp",
             "rarity": "EPIC",
             "equipment_type": "GUN",
             "power": 1,
@@ -127,9 +127,9 @@ def meta_data_correct_json():
 def meta_data_none():
     data = list(
         [
+            "DARKFIRE",
             "",
-            "",
-            "",
+            "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE",
             "EPIC",
             "",
             "",
@@ -148,9 +148,9 @@ def meta_data_none():
 def meta_data_none_json():
     data = dict(
         {
-            "name": "",
+            "name": "DARKFIRE",
             "description": "",
-            "image_url": "",
+            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE.webp",
             "rarity": "EPIC",
             "equipment_type": "",
             "power": "",

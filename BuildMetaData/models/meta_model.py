@@ -2,7 +2,13 @@ import json
 import os
 from dataclasses import dataclass
 
-from ..common import FILE_FORMAT, FOLDER_NAME, PATH_META_DATA
+from ..common import (
+    FILE_FORMAT,
+    FOLDER_NAME,
+    IMAGE_FORMAT_WEBP,
+    PATH_META_DATA,
+    URL_LINK,
+)
 
 
 @dataclass
@@ -25,7 +31,7 @@ class ImageMetaModel:
         meta_data = {
             "name": self.name,
             "description": self.description,
-            "image_url": self.image_url,
+            "image_url": f"{URL_LINK}{self.name}.{IMAGE_FORMAT_WEBP}",
             "rarity": self.rarity,
             "equipment_type": self.equipment_type,
             "power": self.power,
@@ -38,7 +44,7 @@ class ImageMetaModel:
 
     def save(self):
         data_json_format = self.generate_meta_data()
-        file_name = str(self.index)
+        file_name = str(self.name)
 
         if not os.path.exists(FOLDER_NAME):  # pragma no cover
             os.mkdir(FOLDER_NAME)
