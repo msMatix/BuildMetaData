@@ -4,7 +4,8 @@
 # FOLDER
 image/
 metadata/
-image_bg/
+image_bg_webp/
+image_bg_png/
 
 # EDITOR
 .vscode
