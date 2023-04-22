@@ -15,7 +15,6 @@ from ..common import (
 class ImageMetaModel:
     name: str = ""
     description: str = ""
-    image_url: str = ""
     rarity: str = ""
     equipment_type: str = ""
     power: int = 0

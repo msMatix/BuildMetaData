@@ -212,12 +212,6 @@ class ImageExplorerView(tk.Frame):
         self.input_field_description.place(x=400, y=300, anchor="center")
         label_description = tk.Label(self, text="Description:")
         label_description.place(x=80, y=280, anchor="center")
-        # URL
-        self.input_field_url = tk.Entry(self)
-        self.input_field_url.config(width=100)
-        self.input_field_url.place(x=400, y=350, anchor="center")
-        label_url = tk.Label(self, text="Url:")
-        label_url.place(x=60, y=330, anchor="center")
 
         # STORE
         button_store = tk.Button(
@@ -284,7 +278,6 @@ class ImageExplorerView(tk.Frame):
             [
                 self.input_field_name.get(),
                 self.input_field_description.get(),
-                self.input_field_url.get(),
                 str(self.selected_option_rarity.get()),
                 str(self.selected_option_equipment_type.get()),
                 str(self.selected_option_power.get()),
