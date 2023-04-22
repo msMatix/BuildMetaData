@@ -31,6 +31,7 @@ class AppController:
         self.meta_model, self.path_model = models
         self.views = views
 
+    ################################################################################
     # META DATA MODEL
     def save_data(self, data):
         res_meta_data = self.__save_meta_data(data)
@@ -63,21 +64,21 @@ class AppController:
         if not os.path.exists(PATH_IMAGE_BG_STORE_WEBP):  # pragma no cover
             os.mkdir(PATH_IMAGE_BG_STORE_WEBP)
 
+        # DECLARE PATHS
+        # input
         cwd = os.getcwd()
-        # image path inputs
         image_path_bg = os.path.join(
             cwd, f"{PATH_IMAGES_BG}/{rarity}.{IMAGE_FORMAT_PNG}"
         )
         image_path_item = os.path.join(cwd, f"{image_path}")
 
-        # image paths outputs
+        # output
         image_path_output_png = os.path.join(
             cwd, f"{PATH_IMAGE_BG_STORE_PNG}/{name}.{IMAGE_FORMAT_PNG}"
         )
         image_path_output_webp = os.path.join(
             cwd, f"{PATH_IMAGE_BG_STORE_WEBP}/{name}.{IMAGE_FORMAT_WEBP}"
         )
-        print(image_path_item)
 
         try:  # pragma no cover
             img_item = Image.open(image_path_item)
@@ -98,6 +99,7 @@ class AppController:
         except Exception as e:  # pragma no cover
             self.views[ImageExplorerView].show_error(f"Unknown Error occured: {e}.")
 
+    ################################################################################
     # PATH MODEL
     def save_path_to_images(self, path):
         try:

@@ -1,4 +1,4 @@
-# opencv to manipulate images
+# COMMON - DATA
 
 ################################################################################
 # PATH TO STORE META DATA

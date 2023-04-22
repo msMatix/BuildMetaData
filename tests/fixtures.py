@@ -40,7 +40,7 @@ def mock_app_controller(mock_meta_model, mock_path_model, mock_views):
 
 
 ################################################################################
-# SIMULATION OF USER INPUTS
+# SIMULATION USER INPUTS
 @pytest.fixture(scope="function")
 def meta_data_correct():
     data = list(
@@ -102,25 +102,6 @@ def meta_data_file_not_found():
 
 
 @pytest.fixture(scope="function")
-def meta_data_correct_json():
-    data = dict(
-        {
-            "name": "DARKFIRE",
-            "description": "description",
-            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE.webp",
-            "rarity": "Epic",
-            "equipment_type": "GUN_1H",
-            "power": 1,
-            "attack_speed": 1,
-            "weight": 1,
-            "defense": 1,
-            "special_effect": "fireball",
-        }
-    )
-    return data
-
-
-@pytest.fixture(scope="function")
 def meta_data_none():
     data = list(
         [
@@ -136,6 +117,27 @@ def meta_data_none():
             99999999,
             "wrong/path/to/image",
         ]
+    )
+    return data
+
+
+################################################################################
+# RESULT META DATA GENERATION
+@pytest.fixture(scope="function")
+def meta_data_correct_json():
+    data = dict(
+        {
+            "name": "DARKFIRE",
+            "description": "description",
+            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE.webp",
+            "rarity": "Epic",
+            "equipment_type": "GUN_1H",
+            "power": 1,
+            "attack_speed": 1,
+            "weight": 1,
+            "defense": 1,
+            "special_effect": "fireball",
+        }
     )
     return data
 

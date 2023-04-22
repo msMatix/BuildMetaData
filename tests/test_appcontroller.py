@@ -30,6 +30,8 @@ from .fixtures import (
 
 
 class TestAppControllerPathModell:
+    ################################################################################
+    # TESTS
     def test_okay_save_path_to_images(self, mock_app_controller):
         res = mock_app_controller.save_path_to_images("test/path/")
         saved_path = mock_app_controller.get_path_to_images()
@@ -38,6 +40,8 @@ class TestAppControllerPathModell:
 
 
 class TestAppControllerImageModell:
+    ################################################################################
+    # TEST SETUP
     @classmethod
     def setup_class(cls):
         path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
@@ -49,7 +53,9 @@ class TestAppControllerImageModell:
         path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
         os.remove(path_to_file)
 
-    def test_okay_save_meta_data(
+    ################################################################################
+    # TESTS
+    def test_okay_save_meta_data_and_images(
         self, mock_app_controller, meta_data_correct, meta_data_correct_json
     ):
         path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
@@ -61,6 +67,17 @@ class TestAppControllerImageModell:
         with open(path_to_file) as f:
             data = json.load(f)
         assert data == json.dumps(meta_data_correct_json)
+
+        # NOT USEFUL -> item/background image paths are not fixed
+        # cwd = os.getcwd()
+        # path_image_png = os.path.join(
+        #     cwd, f"{PATH_IMAGE_BG_STORE_PNG}/DARKFIRE.{IMAGE_FORMAT_PNG}"
+        # )
+        # path_image_webp = os.path.join(
+        #     cwd, f"{PATH_IMAGE_BG_STORE_WEBP}/DARKFIRE.{IMAGE_FORMAT_WEBP}"
+        # )
+        # assert os.path.isfile(path_image_png)
+        # assert os.path.isfile(path_image_webp)
 
     def test_okay_save_meta_data_none_input(
         self, mock_app_controller, meta_data_none, meta_data_none_json

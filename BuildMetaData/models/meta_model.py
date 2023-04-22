@@ -22,7 +22,7 @@ class ImageMetaModel:
     weight: int = 0
     defense: int = 0
     special_effect: str = ""
-    # DATA only for app
+    # only for app
     index: int = 0
     image_path: str = ""
 
