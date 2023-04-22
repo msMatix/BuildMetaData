@@ -26,7 +26,7 @@ class ImageMetaModel:
     index: int = 0
     image_path: str = ""
 
-    def generate_meta_data(self) -> str:
+    def generate_meta_data(self) -> dict:
         meta_data = {
             "name": self.name,
             "description": self.description,
@@ -39,7 +39,8 @@ class ImageMetaModel:
             "defense": self.defense,
             "special_effect": self.special_effect,
         }
-        return json.dumps(meta_data)
+        # return json.dumps(meta_data, indent=2)
+        return meta_data
 
     def save(self):
         data_json_format = self.generate_meta_data()
@@ -52,4 +53,4 @@ class ImageMetaModel:
             "w",
             encoding="utf-8",
         ) as f:
-            json.dump(data_json_format, f)
+            json.dump(data_json_format, f, indent=2)

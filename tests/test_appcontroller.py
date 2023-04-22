@@ -66,7 +66,7 @@ class TestAppControllerImageModell:
         # read file
         with open(path_to_file) as f:
             data = json.load(f)
-        assert data == json.dumps(meta_data_correct_json)
+        assert data == meta_data_correct_json
 
         # NOT USEFUL -> item/background image paths are not fixed
         # cwd = os.getcwd()
@@ -88,7 +88,7 @@ class TestAppControllerImageModell:
         # read file
         with open(path_to_file) as f:
             data = json.load(f)
-        assert data == json.dumps(meta_data_none_json)
+        assert data == meta_data_none_json
 
     def test_false_no_rarity_selected(self, mock_app_controller, meta_data_rarity_none):
         mock_app_controller.save_data(meta_data_rarity_none)
