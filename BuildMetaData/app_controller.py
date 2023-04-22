@@ -68,15 +68,16 @@ class AppController:
         image_path_bg = os.path.join(
             cwd, f"{PATH_IMAGES_BG}/{rarity}.{IMAGE_FORMAT_PNG}"
         )
-        image_path_item = os.path.join(cwd, f"{image_path}.{IMAGE_FORMAT_PNG}")
+        image_path_item = os.path.join(cwd, f"{image_path}")
 
         # image paths outputs
         image_path_output_png = os.path.join(
             cwd, f"{PATH_IMAGE_BG_STORE_PNG}/{name}.{IMAGE_FORMAT_PNG}"
         )
         image_path_output_webp = os.path.join(
-            cwd, f"{PATH_IMAGE_BG_STORE_PNG}/{name}.{IMAGE_FORMAT_WEBP}"
+            cwd, f"{PATH_IMAGE_BG_STORE_WEBP}/{name}.{IMAGE_FORMAT_WEBP}"
         )
+        print(image_path_item)
 
         try:  # pragma no cover
             img_item = Image.open(image_path_item)
