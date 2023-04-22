@@ -4,7 +4,7 @@ from enum import Enum
 class EEquipmentType(Enum):
     NONE = ""
     HELMET = "Helmet"
-    CHEST_ARMOR = "ChestArmor"
+    ARMOR = "Armor"
     BRACERS = "Bracers"
     BOOTS = "Boots"
     BOW_2H = "Bow_2H"
@@ -23,7 +23,7 @@ class EEquipmentType(Enum):
 class ERarity(Enum):
     NONE = ""
     COMMON = "Common"
-    UNCOMMON = "Uncommen"
+    UNCOMMON = "Uncommon"
     RARE = "Rare"
     EPIC = "Epic"
     LEGENDARY = "Legendary"
@@ -67,5 +67,5 @@ class EDefense(Enum):
 
 class ESpecialEffect(Enum):
     NONE = ""
-    SP_FIREBALL = "FIREBALL"
-    SP_WATERBREATH = "WATERBREATH"
+    SP_FIREBALL = "FIREBALL_1"
+    SP_WATERBREATH = "WATERBREATH_1"
