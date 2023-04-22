@@ -4,10 +4,21 @@ from os.path import isfile
 
 import pytest
 
+from BuildMetaData.common import (
+    FILE_FORMAT,
+    IMAGE_FORMAT_PNG,
+    IMAGE_FORMAT_WEBP,
+    PATH_IMAGE_BG_STORE_PNG,
+    PATH_IMAGE_BG_STORE_WEBP,
+    PATH_META_DATA,
+)
+
 from .fixtures import (
     meta_data_correct,
     meta_data_correct_json,
     meta_data_file_not_found,
+    meta_data_none,
+    meta_data_none_json,
     meta_data_rarity_none,
     mock_app_controller,
     mock_meta_model,
@@ -29,19 +40,19 @@ class TestAppControllerPathModell:
 class TestAppControllerImageModell:
     @classmethod
     def setup_class(cls):
-        path_to_file = "./metadata/99999999.json"
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
         if os.path.isfile(path_to_file):
             os.remove(path_to_file)
 
     @classmethod
     def teardown_class(cls):
-        path_to_file = "./metadata/99999999.json"
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
         os.remove(path_to_file)
 
     def test_okay_save_meta_data(
         self, mock_app_controller, meta_data_correct, meta_data_correct_json
     ):
-        path_to_file = "./metadata/99999999.json"
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
         # get sure file does not exist
         assert not os.path.isfile(path_to_file)
         # generate file
@@ -51,14 +62,31 @@ class TestAppControllerImageModell:
             data = json.load(f)
         assert data == json.dumps(meta_data_correct_json)
 
+    def test_okay_save_meta_data_none_input(
+        self, mock_app_controller, meta_data_none, meta_data_none_json
+    ):
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
+        # update file
+        mock_app_controller.save_data(meta_data_none)
+        # read file
+        with open(path_to_file) as f:
+            data = json.load(f)
+        assert data == json.dumps(meta_data_none_json)
+
     def test_false_no_rarity_selected(self, mock_app_controller, meta_data_rarity_none):
         mock_app_controller.save_data(meta_data_rarity_none)
-        path_to_file = "./image_bg/99999999.png"
-        assert not os.path.isfile(path_to_file)
+        path_to_file_png = f"./{PATH_IMAGE_BG_STORE_PNG}/DARKFIRE.{IMAGE_FORMAT_PNG}"
+        path_to_file_webp = f"./{PATH_IMAGE_BG_STORE_WEBP}/DARKFIRE.{IMAGE_FORMAT_WEBP}"
+
+        assert not os.path.isfile(path_to_file_png)
+        assert not os.path.isfile(path_to_file_webp)
 
     def test_false_exception_file_not_found(
         self, mock_app_controller, meta_data_file_not_found
     ):
         mock_app_controller.save_data(meta_data_file_not_found)
-        path_to_file = "./image_bg/99999999.png"
-        assert not os.path.isfile(path_to_file)
+        path_to_file_png = f"./{PATH_IMAGE_BG_STORE_PNG}/DARKFIRE.{IMAGE_FORMAT_PNG}"
+        path_to_file_webp = f"./{PATH_IMAGE_BG_STORE_WEBP}/DARKFIRE.{IMAGE_FORMAT_WEBP}"
+
+        assert not os.path.isfile(path_to_file_png)
+        assert not os.path.isfile(path_to_file_webp)

@@ -23,8 +23,10 @@ dependencies can be resolved correctly, Py-Poetry was used.
 ## POETRY
     # install poetry 
     curl -sSL https://install.python-poetry.org | python3 -
+
     # activate poetry 
     poetry shell 
+
     # install dependencies
     poetry install
 

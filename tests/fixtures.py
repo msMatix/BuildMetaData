@@ -47,14 +47,13 @@ def meta_data_correct():
         [
             "DARKFIRE",
             "description",
-            "image_url",
-            "EPIC",
-            "GUN",
-            "HELMET",
+            "Epic",
+            "GUN_1H",
             1,
             1,
             1,
             1,
+            "fireball",
             99999999,
             "no/path/necessary",
         ]
@@ -68,14 +67,13 @@ def meta_data_rarity_none():
         [
             "DARKFIRE",
             "description",
-            "image_url",
-            "NONE",
-            "GUN",
-            "HELMET",
+            "",
+            "GUN_1H",
             1,
             1,
             1,
             1,
+            "fireball",
             99999999,
             "path",
         ]
@@ -89,14 +87,13 @@ def meta_data_file_not_found():
         [
             "DARKFIRE",
             "description",
-            "image_url",
-            "EPIC",
-            "GUN",
-            "HELMET",
+            "Epic",
+            "GUN_1H",
             1,
             1,
             1,
             1,
+            "fireball",
             99999999,
             "wrong/path/to/image",
         ]
@@ -110,14 +107,53 @@ def meta_data_correct_json():
         {
             "name": "DARKFIRE",
             "description": "description",
-            "image_url": "image_url",
-            "rarity": "EPIC",
-            "weapon_type": "GUN",
-            "armor_type": "HELMET",
-            "damage": 1,
-            "range": 1,
-            "movement_speed": 1,
+            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE.webp",
+            "rarity": "Epic",
+            "equipment_type": "GUN_1H",
+            "power": 1,
             "attack_speed": 1,
+            "weight": 1,
+            "defense": 1,
+            "special_effect": "fireball",
+        }
+    )
+    return data
+
+
+@pytest.fixture(scope="function")
+def meta_data_none():
+    data = list(
+        [
+            "DARKFIRE",
+            "",
+            "Epic",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            99999999,
+            "wrong/path/to/image",
+        ]
+    )
+    return data
+
+
+@pytest.fixture(scope="function")
+def meta_data_none_json():
+    data = dict(
+        {
+            "name": "DARKFIRE",
+            "description": "",
+            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE.webp",
+            "rarity": "Epic",
+            "equipment_type": "",
+            "power": "",
+            "attack_speed": "",
+            "weight": "",
+            "defense": "",
+            "special_effect": "",
         }
     )
     return data
