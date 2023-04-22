@@ -47,7 +47,6 @@ def meta_data_correct():
         [
             "DARKFIRE",
             "description",
-            "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE",
             "Epic",
             "GUN_1H",
             1,
@@ -68,7 +67,6 @@ def meta_data_rarity_none():
         [
             "DARKFIRE",
             "description",
-            "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE",
             "",
             "GUN_1H",
             1,
@@ -89,7 +87,6 @@ def meta_data_file_not_found():
         [
             "DARKFIRE",
             "description",
-            "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE",
             "Epic",
             "GUN_1H",
             1,
@@ -129,7 +126,6 @@ def meta_data_none():
         [
             "DARKFIRE",
             "",
-            "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE",
             "Epic",
             "",
             "",

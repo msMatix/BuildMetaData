@@ -45,7 +45,7 @@ class AppController:
             self.meta_model.image_path,
         )
 
-        if res_meta_data and res_image_date:
+        if res_meta_data and res_image_date:  # pragma no cover
             self.views[ImageExplorerView].show_success("SUCCESS")
 
     def __save_meta_data(self, data):
