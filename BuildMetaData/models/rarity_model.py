@@ -15,6 +15,7 @@ class RarityMetaModel:
     def generate_init_data():
         rarity_dict = {}
         for enum_value in ERarity:
+            # generate json sections which store a list
             rarity_dict[enum_value.name] = []
 
         with open(FILE_RARITY, "w") as f:
