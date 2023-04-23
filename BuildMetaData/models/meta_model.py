@@ -39,10 +39,29 @@ class ImageMetaModel:
             "defense": self.defense,
             "special_effect": self.special_effect,
         }
-        # return json.dumps(meta_data, indent=2)
         return meta_data
 
+    def check_modell_correctness(self) -> bool:
+        if any(
+            not attr
+            for attr in [
+                self.name,
+                self.description,
+                self.rarity,
+                self.equipment_type,
+                self.power,
+                self.attack_speed,
+                self.weight,
+                self.defense,
+            ]
+        ):
+            return False
+        return True
+
     def save(self):
+        if not self.check_modell_correctness():
+            return False
+
         data_json_format = self.generate_meta_data()
         file_name = str(self.name)
 
@@ -54,3 +73,5 @@ class ImageMetaModel:
             encoding="utf-8",
         ) as f:
             json.dump(data_json_format, f, indent=2)
+
+        return True
