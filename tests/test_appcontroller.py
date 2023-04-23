@@ -41,6 +41,7 @@ class TestAppControllerPathModell:
 
 class TestAppControllerImageModell:
     ################################################################################
+    # HINT: cov is at 100% problem is function (generate_init_data) -> delte before test and everything works
     # TEST SETUP
     @classmethod
     def setup_class(cls):
@@ -53,8 +54,20 @@ class TestAppControllerImageModell:
         path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
         os.remove(path_to_file)
 
+    # @classmethod
+    # def teardown_method(cls):
+    #     path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
+    #     os.remove(path_to_file)
+
     ################################################################################
     # TESTS
+    def test_okay_save_meta_data_none_input(
+        self, mock_app_controller, meta_data_none, meta_data_none_json
+    ):
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
+        mock_app_controller.save_data(meta_data_none)
+        assert not os.path.isfile(path_to_file)
+
     def test_okay_save_meta_data_and_images(
         self, mock_app_controller, meta_data_correct, meta_data_correct_json
     ):
@@ -78,17 +91,6 @@ class TestAppControllerImageModell:
         # )
         # assert os.path.isfile(path_image_png)
         # assert os.path.isfile(path_image_webp)
-
-    def test_okay_save_meta_data_none_input(
-        self, mock_app_controller, meta_data_none, meta_data_none_json
-    ):
-        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
-        # update file
-        mock_app_controller.save_data(meta_data_none)
-        # read file
-        with open(path_to_file) as f:
-            data = json.load(f)
-        assert data == meta_data_none_json
 
     def test_false_no_rarity_selected(self, mock_app_controller, meta_data_rarity_none):
         mock_app_controller.save_data(meta_data_rarity_none)

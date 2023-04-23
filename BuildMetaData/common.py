@@ -5,6 +5,7 @@
 PATH_META_DATA = "metadata/"
 FOLDER_NAME = "metadata"
 FILE_FORMAT = ".json"
+FILE_RARITY = f"{FOLDER_NAME}/rarity_meta{FILE_FORMAT}"
 
 
 ################################################################################

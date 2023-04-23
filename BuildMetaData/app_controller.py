@@ -10,6 +10,7 @@ from .common import (
     PATH_IMAGES_BG,
 )
 from .models.meta_model import ImageMetaModel
+from .models.rarity_model import RarityMetaModel
 from .views.meta_data_types import ERarity
 from .views.view_image_explorer import ImageExplorerView
 
@@ -36,9 +37,13 @@ class AppController:
     def save_data(self, data):
         res_meta_data = self.__save_meta_data(data)
 
-        if self.meta_model.rarity == "":
-            self.views[ImageExplorerView].show_error("Please select a rarity.")
+        if not res_meta_data:
+            self.views[ImageExplorerView].show_error("Please provide missing data.")
             return
+
+        res_meta_rarity = self.__save_meta_rarity_data(
+            self.meta_model.rarity, self.meta_model.name
+        )
 
         res_image_date = self.__save_image_data(
             color_of_rarity[self.meta_model.rarity],
@@ -46,17 +51,31 @@ class AppController:
             self.meta_model.image_path,
         )
 
-        if res_meta_data and res_image_date:  # pragma no cover
+        if res_meta_data and res_image_date and res_meta_rarity:  # pragma no cover
             self.views[ImageExplorerView].show_success("SUCCESS")
 
+    ################################################################################
+    # SAVE META DATA
     def __save_meta_data(self, data):
         try:
             self.meta_model = ImageMetaModel(*data)
-            self.meta_model.save()
+            # check if all necessary information are available
+            if not self.meta_model.save():
+                return False
             return True
         except Exception as e:  # pragma no cover
             self.views[ImageExplorerView].show_error(f"error: {e}")
 
+    def __save_meta_rarity_data(self, rarity, data):
+        try:
+            self.meta_rarity = RarityMetaModel(rarity, data)
+            self.meta_rarity.save()
+            return True
+        except Exception as e:  # pragma no cover
+            self.views[ImageExplorerView].show_error(f"error: {e}")
+
+    ################################################################################
+    # SAVE IMAGE DATA
     def __save_image_data(self, rarity, name, image_path):
         # create output folders
         if not os.path.exists(PATH_IMAGE_BG_STORE_PNG):  # pragma no cover
