@@ -1,8 +1,6 @@
 import json
 import os
-from os.path import isfile
-
-import pytest
+import shutil
 
 from BuildMetaData.common import (
     FILE_FORMAT,
@@ -41,7 +39,6 @@ class TestAppControllerPathModell:
 
 class TestAppControllerImageModell:
     ################################################################################
-    # HINT: cov is at 100% problem is function (generate_init_data) -> delte before test and everything works
     # TEST SETUP
     @classmethod
     def setup_class(cls):
@@ -51,8 +48,8 @@ class TestAppControllerImageModell:
 
     @classmethod
     def teardown_class(cls):
-        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
-        os.remove(path_to_file)
+        path = "./tests/metadata"
+        shutil.rmtree(path)
 
     # @classmethod
     # def teardown_method(cls):
