@@ -1,6 +1,5 @@
 .PHONY: run
 run:
-	# python3 -m BuildMetaData.main"
 	dotenv -f ./env/conf.env run python3 -m BuildMetaData.main
 
 .PHONY: test
