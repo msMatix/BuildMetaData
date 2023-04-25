@@ -1,8 +1,6 @@
 import json
 import os
-from os.path import isfile
-
-import pytest
+import shutil
 
 from BuildMetaData.common import (
     FILE_FORMAT,
@@ -30,6 +28,8 @@ from .fixtures import (
 
 
 class TestAppControllerPathModell:
+    ################################################################################
+    # TESTS
     def test_okay_save_path_to_images(self, mock_app_controller):
         res = mock_app_controller.save_path_to_images("test/path/")
         saved_path = mock_app_controller.get_path_to_images()
@@ -38,6 +38,8 @@ class TestAppControllerPathModell:
 
 
 class TestAppControllerImageModell:
+    ################################################################################
+    # TEST SETUP
     @classmethod
     def setup_class(cls):
         path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
@@ -46,10 +48,24 @@ class TestAppControllerImageModell:
 
     @classmethod
     def teardown_class(cls):
-        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
-        os.remove(path_to_file)
+        path = "./tests/metadata"
+        shutil.rmtree(path)
 
-    def test_okay_save_meta_data(
+    # @classmethod
+    # def teardown_method(cls):
+    #     path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
+    #     os.remove(path_to_file)
+
+    ################################################################################
+    # TESTS
+    def test_okay_save_meta_data_none_input(
+        self, mock_app_controller, meta_data_none, meta_data_none_json
+    ):
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
+        mock_app_controller.save_data(meta_data_none)
+        assert not os.path.isfile(path_to_file)
+
+    def test_okay_save_meta_data_and_images(
         self, mock_app_controller, meta_data_correct, meta_data_correct_json
     ):
         path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
@@ -60,18 +76,18 @@ class TestAppControllerImageModell:
         # read file
         with open(path_to_file) as f:
             data = json.load(f)
-        assert data == json.dumps(meta_data_correct_json)
+        assert data == meta_data_correct_json
 
-    def test_okay_save_meta_data_none_input(
-        self, mock_app_controller, meta_data_none, meta_data_none_json
-    ):
-        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
-        # update file
-        mock_app_controller.save_data(meta_data_none)
-        # read file
-        with open(path_to_file) as f:
-            data = json.load(f)
-        assert data == json.dumps(meta_data_none_json)
+        # NOT USEFUL -> item/background image paths are not fixed
+        # cwd = os.getcwd()
+        # path_image_png = os.path.join(
+        #     cwd, f"{PATH_IMAGE_BG_STORE_PNG}/DARKFIRE.{IMAGE_FORMAT_PNG}"
+        # )
+        # path_image_webp = os.path.join(
+        #     cwd, f"{PATH_IMAGE_BG_STORE_WEBP}/DARKFIRE.{IMAGE_FORMAT_WEBP}"
+        # )
+        # assert os.path.isfile(path_image_png)
+        # assert os.path.isfile(path_image_webp)
 
     def test_false_no_rarity_selected(self, mock_app_controller, meta_data_rarity_none):
         mock_app_controller.save_data(meta_data_rarity_none)

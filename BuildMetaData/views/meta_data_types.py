@@ -3,27 +3,27 @@ from enum import Enum
 
 class EEquipmentType(Enum):
     NONE = ""
-    HELMET = ("Helmet",)
-    CHEST_ARMOR = ("ChestArmor",)
-    BRACERS = ("Bracers",)
-    BOOTS = ("Boots",)
-    BOW_2H = ("Bow_2H",)
-    SWORD_2H = ("Sword_2H",)
-    SWORD_1H = ("Sword_1H",)
-    AXE_2H = ("Axe_2H",)
-    AXE_1H = ("Axe_1H",)
-    HAMMER_2H = ("Hammer_2H",)
-    HAMMER_1H = ("Hammer_1H",)
-    LANCE_1H = ("Lance_1H",)
-    GUN_1H = ("Gun_1H",)
-    SHIELD_1H = ("Shield_1H",)
+    HELMET = "Helmet"
+    ARMOR = "Armor"
+    BRACERS = "Bracers"
+    BOOTS = "Boots"
+    BOW_2H = "Bow_2H"
+    SWORD_2H = "Sword_2H"
+    SWORD_1H = "Sword_1H"
+    AXE_2H = "Axe_2H"
+    AXE_1H = "Axe_1H"
+    HAMMER_2H = "Hammer_2H"
+    HAMMER_1H = "Hammer_1H"
+    LANCE_1H = "Lance_1H"
+    GUN_1H = "Gun_1H"
+    SHIELD_1H = "Shield_1H"
     WAND_1H = "Wand_1H"
 
 
 class ERarity(Enum):
     NONE = ""
     COMMON = "Common"
-    UNCOMMON = "Uncommen"
+    UNCOMMON = "Uncommon"
     RARE = "Rare"
     EPIC = "Epic"
     LEGENDARY = "Legendary"
@@ -67,5 +67,5 @@ class EDefense(Enum):
 
 class ESpecialEffect(Enum):
     NONE = ""
-    SP_FIREBALL = "FIREBALL"
-    SP_WATERBREATH = "WATERBREATH"
+    SP_FIREBALL = "FIREBALL_1"
+    SP_WATERBREATH = "WATERBREATH_1"
