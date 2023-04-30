@@ -3,6 +3,24 @@ BuildMetaData is an app made for creating metadata from images individually. Als
 a different background for the image depending on the rarity. The app is based on the TkInter-Lib. So that the project 
 dependencies can be resolved correctly, Py-Poetry was used. 
 
+The folder structure is shown below. Note that the folders 'image_bg_png', 'image_bg_webp' and 'metadata' are generated 
+automatically. The folder, where the images ('image') should be located and in which also a folder for the background 
+images ('background') is, must be created manually. 
+
+
+```
+├── BuildMetaData
+│   ├── models
+│   └── views
+├── env
+├── image
+│   ├── background
+├── image_bg_png
+├── image_bg_webp
+├── metadata
+└── tests
+```
+
 
 # DEVELOPMENT
 ## RUN
@@ -50,3 +68,6 @@ to commit messages via:
 Optionally, you may want to use
 [commitizen](https://github.com/commitizen-tools/commitizen) and `cz c` to
 construct your commit messages.
+
+
+
