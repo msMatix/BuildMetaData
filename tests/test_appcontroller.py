@@ -4,6 +4,7 @@ import shutil
 
 from BuildMetaData.common import (
     FILE_FORMAT,
+    FOLDER_NAME,
     IMAGE_FORMAT_PNG,
     IMAGE_FORMAT_WEBP,
     PATH_IMAGE_BG_STORE_PNG,
@@ -32,7 +33,7 @@ class TestAppControllerPathModell:
     # TESTS
     def test_okay_save_path_to_images(self, mock_app_controller):
         res = mock_app_controller.save_path_to_images("test/path/")
-        saved_path = mock_app_controller.get_path_to_images()
+        saved_path = mock_app_controller.get_path_to_equipment()
 
         assert saved_path == "test/path/"
 
@@ -45,6 +46,10 @@ class TestAppControllerImageModell:
         path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
         if os.path.isfile(path_to_file):
             os.remove(path_to_file)
+
+        # create test metadata folder
+        if not os.path.exists(FOLDER_NAME):
+            os.mkdir(FOLDER_NAME)
 
     @classmethod
     def teardown_class(cls):
@@ -71,8 +76,10 @@ class TestAppControllerImageModell:
         path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_FORMAT}"
         # get sure file does not exist
         assert not os.path.isfile(path_to_file)
+
         # generate file
         mock_app_controller.save_data(meta_data_correct)
+
         # read file
         with open(path_to_file) as f:
             data = json.load(f)

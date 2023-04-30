@@ -57,7 +57,7 @@ class ImageExplorerView(tk.Frame):
         self.reset_image_explorer()
 
         if self.controller:
-            self.image_folder = self.controller.get_path_to_images()
+            self.image_folder = self.controller.get_path_to_equipment()
 
         if self.image_folder:
             self.get_images()
