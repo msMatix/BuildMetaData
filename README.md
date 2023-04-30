@@ -3,9 +3,11 @@ BuildMetaData is an app made for creating metadata from images individually. Als
 a different background for the image depending on the rarity. The app is based on the TkInter-Lib. So that the project 
 dependencies can be resolved correctly, Py-Poetry was used. 
 
-The folder structure is shown below. Note that the folders 'image_bg_png', 'image_bg_webp' and 'metadata' are generated 
-automatically. The folder, where the images ('image') should be located and in which also a folder for the background 
-images ('background') is, must be created manually. 
+The folder structure is shown below. Note that the folders `image_bg_png`, `image_bg_webp` and `metadata` are generated 
+automatically. The folder, where the images (`image`) should be located and in which also a folder for the background 
+images (`background`) is, must be created manually. Keep in mind that the folder of the background images has to be a 
+subfolder of the image folder. It is helpful here that the equipment images are also created as subfolders (`equipment`) 
+of the image folder.
 
 
 ```
@@ -15,6 +17,7 @@ images ('background') is, must be created manually.
 ├── env
 ├── image
 │   ├── background
+│   ├── equipment
 ├── image_bg_png
 ├── image_bg_webp
 ├── metadata
