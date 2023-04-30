@@ -1,14 +1,7 @@
 import json
-import os
 from dataclasses import dataclass
 
-from ..common import (
-    FILE_FORMAT,
-    FOLDER_NAME,
-    IMAGE_FORMAT_WEBP,
-    PATH_META_DATA,
-    URL_LINK,
-)
+from ..common import FILE_FORMAT, IMAGE_FORMAT_WEBP, PATH_META_DATA, URL_LINK
 
 
 @dataclass
@@ -65,8 +58,6 @@ class ImageMetaModel:
         data_json_format = self.generate_meta_data()
         file_name = str(self.name)
 
-        if not os.path.exists(FOLDER_NAME):  # pragma no cover
-            os.mkdir(FOLDER_NAME)
         with open(
             PATH_META_DATA + file_name + FILE_FORMAT,
             "w",

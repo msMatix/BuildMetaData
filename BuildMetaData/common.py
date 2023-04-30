@@ -18,7 +18,7 @@ IMAGE_FORMAT_WEBP = "webp"
 # PATH TO STORE IMAGES WITH BACKGROUND
 PATH_IMAGE_BG_STORE_PNG = "image_bg_png"
 PATH_IMAGE_BG_STORE_WEBP = "image_bg_webp"
-PATH_IMAGES_BG = "image/background"
+PATH_IMAGES_BG = "background"
 
 ################################################################################
 # URL

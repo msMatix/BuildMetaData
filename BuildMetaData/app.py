@@ -1,7 +1,9 @@
+import os
 import sys
 import tkinter as tk
 
 from .app_controller import AppController
+from .common import FOLDER_NAME, PATH_IMAGE_BG_STORE_PNG, PATH_IMAGE_BG_STORE_WEBP
 from .models.meta_model import ImageMetaModel
 from .models.path_model import FilePathModel
 from .views.view_image_explorer import ImageExplorerView
@@ -13,6 +15,9 @@ class App(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
         self.wm_title("Build Meta Data (JSON)")
+
+        # create output folders
+        self.create_folders()
 
         container = tk.Frame(self, height=400, width=600)
         container.pack(side="top", fill="both", expand=True)
@@ -42,3 +47,14 @@ class App(tk.Tk):
         page_to_show = getattr(sys.modules[__name__], page)
         frame = self.views[page_to_show]
         frame.tkraise()
+
+    def create_folders(self):
+        # folder images
+        if not os.path.exists(PATH_IMAGE_BG_STORE_PNG):  # pragma no cover
+            os.mkdir(PATH_IMAGE_BG_STORE_PNG)
+        if not os.path.exists(PATH_IMAGE_BG_STORE_WEBP):  # pragma no cover
+            os.mkdir(PATH_IMAGE_BG_STORE_WEBP)
+
+        # folder metadata
+        if not os.path.exists(FOLDER_NAME):  # pragma no cover
+            os.mkdir(FOLDER_NAME)

@@ -7,7 +7,6 @@ from .common import (
     IMAGE_FORMAT_WEBP,
     PATH_IMAGE_BG_STORE_PNG,
     PATH_IMAGE_BG_STORE_WEBP,
-    PATH_IMAGES_BG,
 )
 from .models.meta_model import ImageMetaModel
 from .models.rarity_model import RarityMetaModel
@@ -77,17 +76,11 @@ class AppController:
     ################################################################################
     # SAVE IMAGE DATA
     def __save_image_data(self, rarity, name, image_path):
-        # create output folders
-        if not os.path.exists(PATH_IMAGE_BG_STORE_PNG):  # pragma no cover
-            os.mkdir(PATH_IMAGE_BG_STORE_PNG)
-        if not os.path.exists(PATH_IMAGE_BG_STORE_WEBP):  # pragma no cover
-            os.mkdir(PATH_IMAGE_BG_STORE_WEBP)
-
         # DECLARE PATHS
-        # input
         cwd = os.getcwd()
         image_path_bg = os.path.join(
-            cwd, f"{PATH_IMAGES_BG}/{rarity}.{IMAGE_FORMAT_PNG}"
+            cwd,
+            f"{self.path_model.get_path_bg()}/{rarity}.{IMAGE_FORMAT_PNG}",
         )
         image_path_item = os.path.join(cwd, f"{image_path}")
 
@@ -127,5 +120,5 @@ class AppController:
         except Exception as e:  # pragma no cover
             self.views[ImageExplorerView].show_error(f"Error {e} occured.")
 
-    def get_path_to_images(self):
-        return self.path_model.get_path()
+    def get_path_to_equipment(self):
+        return self.path_model.get_path_equipment()
