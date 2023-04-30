@@ -8,6 +8,8 @@ automatically. The folder, where the images ('image') should be located and in w
 images ('background') is, must be created manually. 
 
 
+'''
+{
 ├── BuildMetaData
 │   ├── models
 │   └── views
@@ -18,7 +20,8 @@ images ('background') is, must be created manually.
 ├── image_bg_webp
 ├── metadata
 └── tests
-
+}
+'''
 
 
 # DEVELOPMENT
