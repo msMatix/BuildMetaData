@@ -3,7 +3,7 @@ import sys
 import tkinter as tk
 
 from .app_controller import AppController
-from .common import FOLDER_NAME, PATH_IMAGE_BG_STORE_PNG, PATH_IMAGE_BG_STORE_WEBP
+from .common import FOLDER_METADATA, PATH_RESULT_PNG, PATH_RESULT_WEBP
 from .models.meta_model import ImageMetaModel
 from .models.path_model import FilePathModel
 from .views.view_image_explorer import ImageExplorerView
@@ -50,11 +50,11 @@ class App(tk.Tk):
 
     def create_folders(self):
         # folder images
-        if not os.path.exists(PATH_IMAGE_BG_STORE_PNG):  # pragma no cover
-            os.mkdir(PATH_IMAGE_BG_STORE_PNG)
-        if not os.path.exists(PATH_IMAGE_BG_STORE_WEBP):  # pragma no cover
-            os.mkdir(PATH_IMAGE_BG_STORE_WEBP)
+        if not os.path.exists(PATH_RESULT_PNG):  # pragma no cover
+            os.mkdir(PATH_RESULT_PNG)
+        if not os.path.exists(PATH_RESULT_WEBP):  # pragma no cover
+            os.mkdir(PATH_RESULT_WEBP)
 
         # folder metadata
-        if not os.path.exists(FOLDER_NAME):  # pragma no cover
-            os.mkdir(FOLDER_NAME)
+        if not os.path.exists(FOLDER_METADATA):  # pragma no cover
+            os.mkdir(FOLDER_METADATA)

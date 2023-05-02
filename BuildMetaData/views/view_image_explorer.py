@@ -8,6 +8,7 @@ from PIL import Image, ImageTk
 from .meta_data_types import (
     EAttackSpeed,
     EDefense,
+    EEquipmentSet,
     EEquipmentType,
     EPower,
     ERarity,
@@ -41,6 +42,7 @@ class ImageExplorerView(tk.Frame):
         self.selected_option_weight = tk.StringVar(self)
         self.selected_option_attack_speed = tk.StringVar(self)
         self.selected_option_special_effect = tk.StringVar(self)
+        self.selected_option_equipment_set = tk.StringVar(self)
         # controller
         self.controller = None
 
@@ -200,6 +202,20 @@ class ImageExplorerView(tk.Frame):
         label_special_effect = tk.Label(self, text="Select special effect:")
         label_special_effect.place(x=550, y=80, anchor="center")
 
+        # SET
+        self.selected_option_equipment_set.set(EEquipmentSet.NONE.value)
+        equipment_set_options = {
+            equipment_set.value: equipment_set.value for equipment_set in EEquipmentSet
+        }
+        dropdown_equipment_set = tk.OptionMenu(
+            self, self.selected_option_equipment_set, *equipment_set_options
+        )
+        dropdown_equipment_set.config(width=10)
+        dropdown_equipment_set.place(x=550, y=150, anchor="center")
+
+        label_equipment_set = tk.Label(self, text="Select equipment set:")
+        label_equipment_set.place(x=550, y=130, anchor="center")
+
         # NAME
         self.input_field_name = tk.Entry(self)
         self.input_field_name.config(width=100)
@@ -285,6 +301,7 @@ class ImageExplorerView(tk.Frame):
                 str(self.selected_option_weight.get()),
                 str(self.selected_option_attack_speed.get()),
                 str(self.selected_option_special_effect.get()),
+                str(self.selected_option_equipment_set.get()),
                 self.current_idx,
                 self.image_path,
             ]
@@ -300,6 +317,7 @@ class ImageExplorerView(tk.Frame):
         self.selected_option_weight.set(EWeight.NONE.value)
         self.selected_option_attack_speed.set(EAttackSpeed.NONE.value)
         self.selected_option_special_effect.set(ESpecialEffect.NONE.value)
+        self.selected_option_equipment_set.set(ESpecialEffect.NONE.value)
 
     ################################################################################
     # FILE EXPLORER

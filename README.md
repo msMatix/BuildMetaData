@@ -26,6 +26,10 @@ of the image folder.
 
 
 # DEVELOPMENT
+# GENERAL
+The app is using TKinter that is why you have to install the tkinter framework. If you are using Paru as 
+package installer type: `paru -Sy tk`
+
 ## RUN
 
     # start 

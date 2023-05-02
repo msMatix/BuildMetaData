@@ -1,7 +1,7 @@
 import json
 from dataclasses import dataclass
 
-from ..common import FILE_FORMAT, IMAGE_FORMAT_WEBP, PATH_META_DATA, URL_LINK
+from ..common import FILE_JSON, IMAGE_WEBP, PATH_META_DATA, URL_LINK
 
 
 @dataclass
@@ -15,6 +15,7 @@ class ImageMetaModel:
     weight: int = 0
     defense: int = 0
     special_effect: str = ""
+    equipment_set: str = ""
     # only for app
     index: int = 0
     image_path: str = ""
@@ -23,7 +24,7 @@ class ImageMetaModel:
         meta_data = {
             "name": self.name,
             "description": self.description,
-            "image_url": f"{URL_LINK}{self.name}.{IMAGE_FORMAT_WEBP}",
+            "image_url": f"{URL_LINK}{self.name}{IMAGE_WEBP}",
             "rarity": self.rarity,
             "equipment_type": self.equipment_type,
             "power": self.power,
@@ -31,6 +32,7 @@ class ImageMetaModel:
             "weight": self.weight,
             "defense": self.defense,
             "special_effect": self.special_effect,
+            "equipment_set": self.equipment_set,
         }
         return meta_data
 
@@ -46,6 +48,7 @@ class ImageMetaModel:
                 self.attack_speed,
                 self.weight,
                 self.defense,
+                self.equipment_set,
             ]
         ):
             return False
@@ -59,7 +62,7 @@ class ImageMetaModel:
         file_name = str(self.name)
 
         with open(
-            PATH_META_DATA + file_name + FILE_FORMAT,
+            PATH_META_DATA + file_name + FILE_JSON,
             "w",
             encoding="utf-8",
         ) as f:

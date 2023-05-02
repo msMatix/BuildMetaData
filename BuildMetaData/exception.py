@@ -1,0 +1,2 @@
+class NFTAlreadyExist(Exception):
+    pass

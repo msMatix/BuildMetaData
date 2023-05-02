@@ -54,6 +54,28 @@ def meta_data_correct():
             1,
             1,
             "fireball",
+            "metal",
+            99999999,
+            "no/path/necessary",
+        ]
+    )
+    return data
+
+
+@pytest.fixture(scope="function")
+def meta_data_correct_uncommon():
+    data = list(
+        [
+            "DARKFIRE",
+            "description",
+            "Uncommon",
+            "GUN_1H",
+            1,
+            1,
+            1,
+            1,
+            "fireball",
+            "metal",
             99999999,
             "no/path/necessary",
         ]
@@ -74,6 +96,7 @@ def meta_data_rarity_none():
             1,
             1,
             "fireball",
+            "metal",
             99999999,
             "path",
         ]
@@ -94,6 +117,7 @@ def meta_data_file_not_found():
             1,
             1,
             "fireball",
+            "metal",
             99999999,
             "wrong/path/to/image",
         ]
@@ -108,6 +132,7 @@ def meta_data_none():
             "DARKFIRE",
             "",
             "Epic",
+            "",
             "",
             "",
             "",
@@ -137,6 +162,7 @@ def meta_data_correct_json():
             "weight": 1,
             "defense": 1,
             "special_effect": "fireball",
+            "equipment_set": "metal",
         }
     )
     return data
@@ -156,6 +182,23 @@ def meta_data_none_json():
             "weight": "",
             "defense": "",
             "special_effect": "",
+            "equipment_set": "",
+        }
+    )
+    return data
+
+
+@pytest.fixture(scope="function")
+def meta_data_rarity_json():
+    data = dict(
+        {
+            "NONE": {},
+            "COMMON": {},
+            "UNCOMMON": {},
+            "RARE": {},
+            "EPIC": {"DARKFIRE": "DARKFIRE"},
+            "LEGENDARY": {},
+            "UNIQUE": {},
         }
     )
     return data
