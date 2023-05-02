@@ -15,6 +15,7 @@ class ImageMetaModel:
     weight: int = 0
     defense: int = 0
     special_effect: str = ""
+    equipment_set: str = ""
     # only for app
     index: int = 0
     image_path: str = ""
@@ -31,6 +32,7 @@ class ImageMetaModel:
             "weight": self.weight,
             "defense": self.defense,
             "special_effect": self.special_effect,
+            "equipment_set": self.equipment_set,
         }
         return meta_data
 
@@ -46,6 +48,7 @@ class ImageMetaModel:
                 self.attack_speed,
                 self.weight,
                 self.defense,
+                self.equipment_set,
             ]
         ):
             return False

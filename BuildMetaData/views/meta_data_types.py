@@ -69,3 +69,9 @@ class ESpecialEffect(Enum):
     NONE = ""
     SP_FIREBALL = "FIREBALL_1"
     SP_WATERBREATH = "WATERBREATH_1"
+
+
+class EEquipmentSet(Enum):
+    NONE = ""
+    DIVINE = "Divine"
+    DARK_METAL = "DarkMetal"
