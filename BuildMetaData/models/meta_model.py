@@ -1,7 +1,7 @@
 import json
 from dataclasses import dataclass
 
-from ..common import FILE_FORMAT, IMAGE_FORMAT_WEBP, PATH_META_DATA, URL_LINK
+from ..common import FILE_JSON, IMAGE_WEBP, PATH_META_DATA, URL_LINK
 
 
 @dataclass
@@ -23,7 +23,7 @@ class ImageMetaModel:
         meta_data = {
             "name": self.name,
             "description": self.description,
-            "image_url": f"{URL_LINK}{self.name}.{IMAGE_FORMAT_WEBP}",
+            "image_url": f"{URL_LINK}{self.name}{IMAGE_WEBP}",
             "rarity": self.rarity,
             "equipment_type": self.equipment_type,
             "power": self.power,
@@ -59,7 +59,7 @@ class ImageMetaModel:
         file_name = str(self.name)
 
         with open(
-            PATH_META_DATA + file_name + FILE_FORMAT,
+            PATH_META_DATA + file_name + FILE_JSON,
             "w",
             encoding="utf-8",
         ) as f:
