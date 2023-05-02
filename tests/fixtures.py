@@ -168,8 +168,6 @@ def meta_data_correct_json():
     return data
 
 
-
-
 @pytest.fixture(scope="function")
 def meta_data_none_json():
     data = dict(
