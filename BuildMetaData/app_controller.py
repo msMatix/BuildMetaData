@@ -30,11 +30,9 @@ class AppController:
     # META DATA MODEL
     def save_data(self, data):
         res_meta_data = self.__save_meta_data(data)
-
         if not res_meta_data:
             self.views[ImageExplorerView].show_error("Please provide missing data.")
             return
-
         res_meta_rarity = self.__save_meta_rarity_data()
         res_image_date = self.__save_image_data()
 
@@ -46,10 +44,8 @@ class AppController:
     def __save_meta_data(self, data):
         try:
             self.meta_model = ImageMetaModel(*data)
-            # check if all necessary information are available
-            if not self.meta_model.save():
-                return False
-            return True
+            return self.meta_model.save()
+
         except Exception as e:  # pragma no cover
             self.views[ImageExplorerView].show_error(f"error: {e}")
 
