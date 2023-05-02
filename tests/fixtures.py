@@ -63,6 +63,27 @@ def meta_data_correct():
 
 
 @pytest.fixture(scope="function")
+def meta_data_correct_uncommon():
+    data = list(
+        [
+            "DARKFIRE",
+            "description",
+            "Uncommon",
+            "GUN_1H",
+            1,
+            1,
+            1,
+            1,
+            "fireball",
+            "metal",
+            99999999,
+            "no/path/necessary",
+        ]
+    )
+    return data
+
+
+@pytest.fixture(scope="function")
 def meta_data_rarity_none():
     data = list(
         [
@@ -147,6 +168,8 @@ def meta_data_correct_json():
     return data
 
 
+
+
 @pytest.fixture(scope="function")
 def meta_data_none_json():
     data = dict(
@@ -162,6 +185,22 @@ def meta_data_none_json():
             "defense": "",
             "special_effect": "",
             "equipment_set": "",
+        }
+    )
+    return data
+
+
+@pytest.fixture(scope="function")
+def meta_data_rarity_json():
+    data = dict(
+        {
+            "NONE": {},
+            "COMMON": {},
+            "UNCOMMON": {},
+            "RARE": {},
+            "EPIC": {"DARKFIRE": "DARKFIRE"},
+            "LEGENDARY": {},
+            "UNIQUE": {},
         }
     )
     return data

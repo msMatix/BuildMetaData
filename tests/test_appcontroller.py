@@ -4,6 +4,7 @@ import shutil
 
 from BuildMetaData.common import (
     FILE_JSON,
+    FILE_RARITY,
     FOLDER_METADATA,
     IMAGE_PNG,
     IMAGE_WEBP,
@@ -15,9 +16,11 @@ from BuildMetaData.common import (
 from .fixtures import (
     meta_data_correct,
     meta_data_correct_json,
+    meta_data_correct_uncommon,
     meta_data_file_not_found,
     meta_data_none,
     meta_data_none_json,
+    meta_data_rarity_json,
     meta_data_rarity_none,
     mock_app_controller,
     mock_meta_model,
@@ -95,6 +98,30 @@ class TestAppControllerImageModell:
         # )
         # assert os.path.isfile(path_image_png)
         # assert os.path.isfile(path_image_webp)
+
+    def test_okay_save_meta_data_and_images_and_no_duplicate_rarity(
+        self,
+        mock_app_controller,
+        meta_data_correct,
+        meta_data_rarity_json,
+        meta_data_correct_uncommon,
+    ):
+        path_to_file = f"./{FILE_RARITY}"
+
+        # generate file
+        mock_app_controller.save_data(meta_data_correct)
+
+        # check if nft exist two times in the same rarity
+        mock_app_controller.save_data(meta_data_correct)
+        with open(path_to_file) as f:
+            data = json.load(f)
+        assert data == meta_data_rarity_json
+
+        # Check whether in the case of a new creation of an already existing nft only in the case of other rarity none is created
+        mock_app_controller.save_data(meta_data_correct_uncommon)
+        with open(path_to_file) as f:
+            data = json.load(f)
+        assert data == meta_data_rarity_json
 
     def test_false_no_rarity_selected(self, mock_app_controller, meta_data_rarity_none):
         mock_app_controller.save_data(meta_data_rarity_none)
