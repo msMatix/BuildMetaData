@@ -16,6 +16,8 @@ from BuildMetaData.common import (
 from .fixtures import (
     meta_data_correct,
     meta_data_correct_json,
+    meta_data_correct_no_special_attack,
+    meta_data_correct_no_special_attack_json,
     meta_data_correct_uncommon,
     meta_data_file_not_found,
     meta_data_none,
@@ -66,9 +68,7 @@ class TestAppControllerImageModell:
 
     ################################################################################
     # TESTS
-    def test_okay_save_meta_data_none_input(
-        self, mock_app_controller, meta_data_none, meta_data_none_json
-    ):
+    def test_okay_save_meta_data_none_input(self, mock_app_controller, meta_data_none):
         path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_JSON}"
         mock_app_controller.save_data(meta_data_none)
         assert not os.path.isfile(path_to_file)
@@ -98,6 +98,22 @@ class TestAppControllerImageModell:
         # )
         # assert os.path.isfile(path_image_png)
         # assert os.path.isfile(path_image_webp)
+
+    def test_okay_save_meta_data_and_images_no_special_attack_defined(
+        self,
+        mock_app_controller,
+        meta_data_correct_no_special_attack,
+        meta_data_correct_no_special_attack_json,
+    ):
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_JSON}"
+
+        # generate file
+        mock_app_controller.save_data(meta_data_correct_no_special_attack)
+
+        # read file
+        with open(path_to_file) as f:
+            data = json.load(f)
+        assert data == meta_data_correct_no_special_attack_json
 
     def test_okay_save_meta_data_and_images_and_no_duplicate_rarity(
         self,
