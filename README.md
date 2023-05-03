@@ -42,8 +42,11 @@ package installer type: `paru -Sy tk`
     # the app tests 
     make test
 
-    # the tests cov 
+    # the tests coverage
     make cov
+
+    # remove output folders (metadata, image_bg_png/webp)
+    make clean
 
 ## POETRY
     # install poetry 
