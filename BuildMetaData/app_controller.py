@@ -54,8 +54,7 @@ class AppController:
             self.meta_rarity = RarityMetaModel(
                 self.meta_model.rarity, self.meta_model.name
             )
-            self.meta_rarity.save()
-            return True
+            return self.meta_rarity.save()
         except Exception as e:  # pragma no cover
             self.views[ImageExplorerView].show_error(f"error: {e}")
 

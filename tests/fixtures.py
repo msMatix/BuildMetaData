@@ -84,6 +84,27 @@ def meta_data_correct_uncommon():
 
 
 @pytest.fixture(scope="function")
+def meta_data_correct_no_special_attack():
+    data = list(
+        [
+            "DARKFIRE",
+            "description",
+            "Epic",
+            "GUN_1H",
+            1,
+            1,
+            1,
+            1,
+            "",
+            "metal",
+            99999999,
+            "no/path/necessary",
+        ]
+    )
+    return data
+
+
+@pytest.fixture(scope="function")
 def meta_data_rarity_none():
     data = list(
         [
@@ -162,6 +183,26 @@ def meta_data_correct_json():
             "weight": 1,
             "defense": 1,
             "special_effect": "fireball",
+            "equipment_set": "metal",
+        }
+    )
+    return data
+
+
+@pytest.fixture(scope="function")
+def meta_data_correct_no_special_attack_json():
+    data = dict(
+        {
+            "name": "DARKFIRE",
+            "description": "description",
+            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE.webp",
+            "rarity": "Epic",
+            "equipment_type": "GUN_1H",
+            "power": 1,
+            "attack_speed": 1,
+            "weight": 1,
+            "defense": 1,
+            "special_effect": "",
             "equipment_set": "metal",
         }
     )

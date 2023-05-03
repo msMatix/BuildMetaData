@@ -34,10 +34,11 @@ class RarityMetaModel:
                 data[ERarity(rarity).name] = dict({new_data: new_data})
                 f.seek(0)
                 json.dump(data, f, indent=2)
+                return True
             else:
                 raise NFTAlreadyExist("NFT name already awarded.")
 
     def save(self):
         if not os.path.isfile(FILE_RARITY):
             RarityMetaModel.generate_init_data()
-        RarityMetaModel.append_data(FILE_RARITY, self.rarity, self.item)
+        return RarityMetaModel.append_data(FILE_RARITY, self.rarity, self.item)

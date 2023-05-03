@@ -37,7 +37,7 @@ class ImageMetaModel:
         return meta_data
 
     def check_modell_correctness(self) -> bool:
-        if any(
+        return any(
             not attr
             for attr in [
                 self.name,
@@ -50,12 +50,10 @@ class ImageMetaModel:
                 self.defense,
                 self.equipment_set,
             ]
-        ):
-            return False
-        return True
+        )
 
     def save(self):
-        if not self.check_modell_correctness():
+        if self.check_modell_correctness():
             return False
 
         data_json_format = self.generate_meta_data()
