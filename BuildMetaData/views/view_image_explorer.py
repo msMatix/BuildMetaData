@@ -292,7 +292,7 @@ class ImageExplorerView(tk.Frame):
     def save_meta_data_in_file(self):
         data = list(
             [
-                self.input_field_name.get(),
+                self.input_field_name.get().strip(),
                 self.input_field_description.get(),
                 str(self.selected_option_rarity.get()),
                 str(self.selected_option_equipment_type.get()),
