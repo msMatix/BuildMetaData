@@ -44,10 +44,7 @@ class ImageMetaModel:
                 self.description,
                 self.rarity,
                 self.equipment_type,
-                self.power,
-                self.attack_speed,
                 self.weight,
-                self.defense,
                 self.equipment_set,
             ]
         )

@@ -16,6 +16,8 @@ from BuildMetaData.common import (
 from .fixtures import (
     meta_data_correct,
     meta_data_correct_json,
+    meta_data_correct_no_optional,
+    meta_data_correct_no_optional_json,
     meta_data_correct_no_special_attack,
     meta_data_correct_no_special_attack_json,
     meta_data_correct_uncommon,
@@ -138,6 +140,23 @@ class TestAppControllerImageModell:
         with open(path_to_file) as f:
             data = json.load(f)
         assert data == meta_data_rarity_json
+
+    def test_okay_save_meta_data_and_images_no_optional_defined(
+        self,
+        mock_app_controller,
+        meta_data_correct_no_optional,
+        meta_data_correct_no_optional_json,
+    ):
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE2{FILE_JSON}"
+
+        # generate file
+        print(path_to_file)
+        mock_app_controller.save_data(meta_data_correct_no_optional)
+
+        # read file
+        with open(path_to_file) as f:
+            data = json.load(f)
+        assert data == meta_data_correct_no_optional_json
 
     def test_false_no_rarity_selected(self, mock_app_controller, meta_data_rarity_none):
         mock_app_controller.save_data(meta_data_rarity_none)
