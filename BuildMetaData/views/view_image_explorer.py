@@ -8,6 +8,7 @@ from PIL import Image, ImageTk
 from .meta_data_types import (
     EAttackSpeed,
     EDefense,
+    EEquipmentRange,
     EEquipmentSet,
     EEquipmentType,
     EPower,
@@ -43,6 +44,7 @@ class ImageExplorerView(tk.Frame):
         self.selected_option_attack_speed = tk.StringVar(self)
         self.selected_option_special_effect = tk.StringVar(self)
         self.selected_option_equipment_set = tk.StringVar(self)
+        self.selected_option_equipment_range = tk.StringVar(self)
         # controller
         self.controller = None
 
@@ -216,6 +218,21 @@ class ImageExplorerView(tk.Frame):
         label_equipment_set = tk.Label(self, text="Select equipment set:")
         label_equipment_set.place(x=550, y=130, anchor="center")
 
+        # EQUIPMENT RANGE
+        self.selected_option_equipment_range.set(EEquipmentRange.NONE.value)
+        equipment_range_options = {
+            equipment_range.value: equipment_range.value
+            for equipment_range in EEquipmentRange
+        }
+        dropdown_equipment_range = tk.OptionMenu(
+            self, self.selected_option_equipment_range, *equipment_range_options
+        )
+        dropdown_equipment_range.config(width=10)
+        dropdown_equipment_range.place(x=700, y=100, anchor="center")
+
+        label_equipment_range = tk.Label(self, text="Select equipment range:")
+        label_equipment_range.place(x=700, y=80, anchor="center")
+
         # NAME
         self.input_field_name = tk.Entry(self)
         self.input_field_name.config(width=100)
@@ -302,6 +319,7 @@ class ImageExplorerView(tk.Frame):
                 str(self.selected_option_attack_speed.get()),
                 str(self.selected_option_special_effect.get()),
                 str(self.selected_option_equipment_set.get()),
+                str(self.selected_option_equipment_range.get()),
                 self.current_idx,
                 self.image_path,
             ]
@@ -317,7 +335,8 @@ class ImageExplorerView(tk.Frame):
         self.selected_option_weight.set(EWeight.NONE.value)
         self.selected_option_attack_speed.set(EAttackSpeed.NONE.value)
         self.selected_option_special_effect.set(ESpecialEffect.NONE.value)
-        self.selected_option_equipment_set.set(ESpecialEffect.NONE.value)
+        self.selected_option_equipment_set.set(EEquipmentSet.NONE.value)
+        self.selected_option_equipment_range.set(EEquipmentRange.NONE.value)
 
     ################################################################################
     # FILE EXPLORER

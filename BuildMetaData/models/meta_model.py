@@ -16,6 +16,7 @@ class ImageMetaModel:
     defense: int = 0
     special_effect: str = ""
     equipment_set: str = ""
+    equipment_range: int = 0
     # only for app
     index: int = 0
     image_path: str = ""
@@ -33,6 +34,7 @@ class ImageMetaModel:
             "defense": self.defense,
             "special_effect": self.special_effect,
             "equipment_set": self.equipment_set,
+            "equipment_range": self.equipment_range,
         }
         return meta_data
 

@@ -55,6 +55,7 @@ def meta_data_correct():
             1,
             "fireball",
             "metal",
+            1,
             99999999,
             "no/path/necessary",
         ]
@@ -76,6 +77,7 @@ def meta_data_correct_uncommon():
             1,
             "fireball",
             "metal",
+            1,
             99999999,
             "no/path/necessary",
         ]
@@ -97,6 +99,7 @@ def meta_data_correct_no_special_attack():
             1,
             "",
             "metal",
+            1,
             99999999,
             "no/path/necessary",
         ]
@@ -118,6 +121,7 @@ def meta_data_correct_no_optional():
             "",
             "",
             "metal",
+            "1",
             99999998,
             "no/path/necessary",
         ]
@@ -139,6 +143,7 @@ def meta_data_rarity_none():
             1,
             "fireball",
             "metal",
+            1,
             99999999,
             "path",
         ]
@@ -160,6 +165,7 @@ def meta_data_file_not_found():
             1,
             "fireball",
             "metal",
+            1,
             99999999,
             "wrong/path/to/image",
         ]
@@ -174,6 +180,7 @@ def meta_data_none():
             "DARKFIRE",
             "",
             "Epic",
+            "",
             "",
             "",
             "",
@@ -205,6 +212,7 @@ def meta_data_correct_json():
             "defense": 1,
             "special_effect": "fireball",
             "equipment_set": "metal",
+            "equipment_range": 1,
         }
     )
     return data
@@ -225,6 +233,7 @@ def meta_data_correct_no_special_attack_json():
             "defense": 1,
             "special_effect": "",
             "equipment_set": "metal",
+            "equipment_range": 1,
         }
     )
     return data
@@ -245,6 +254,7 @@ def meta_data_correct_no_optional_json():
             "defense": "",
             "special_effect": "",
             "equipment_set": "metal",
+            "equipment_range": "1",
         }
     )
     return data
@@ -265,6 +275,7 @@ def meta_data_none_json():
             "defense": "",
             "special_effect": "",
             "equipment_set": "",
+            "equipment_range": "",
         }
     )
     return data

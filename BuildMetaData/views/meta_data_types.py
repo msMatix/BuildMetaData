@@ -75,3 +75,9 @@ class EEquipmentSet(Enum):
     NONE = ""
     DIVINE = "Divine"
     DARK_METAL = "DarkMetal"
+
+
+class EEquipmentRange(Enum):
+    NONE = ""
+    RANGE_1 = "1"
+    RANGE_5 = "5"
