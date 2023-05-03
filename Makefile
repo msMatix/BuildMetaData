@@ -13,3 +13,7 @@ cov:
 .PHONY: env
 env:
 	poetry shell
+
+.PHONY: clean
+clean:
+	rm -rf metadata image_bg_png image_bg_webp
