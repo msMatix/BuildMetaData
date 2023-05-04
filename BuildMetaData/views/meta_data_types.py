@@ -1,6 +1,13 @@
 from enum import Enum
 
 
+class EBaseEquipment(Enum):
+    ARMOR = "armor"
+    SHIELD = "shield"
+    WEAPON = "weapon"
+    BASE = "base"
+
+
 class EEquipmentType(Enum):
     NONE = ""
     HELMET = "Helmet"

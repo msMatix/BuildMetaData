@@ -130,7 +130,7 @@ class ImageExplorerView(tk.Frame):
         label_equipment_type.place(x=100, y=80, anchor="center")
 
         # RARITY
-        self.selected_option_rarity.set(EEquipmentType.NONE.value)
+        self.selected_option_rarity.set(ERarity.NONE.value)
         rarity_options = {rarity.value: rarity.value for rarity in ERarity}
         dropdown_rarity = tk.OptionMenu(
             self, self.selected_option_rarity, *rarity_options
@@ -314,9 +314,9 @@ class ImageExplorerView(tk.Frame):
                 str(self.selected_option_rarity.get()),
                 str(self.selected_option_equipment_type.get()),
                 str(self.selected_option_power.get()),
-                str(self.selected_option_defense.get()),
-                str(self.selected_option_weight.get()),
                 str(self.selected_option_attack_speed.get()),
+                str(self.selected_option_weight.get()),
+                str(self.selected_option_defense.get()),
                 str(self.selected_option_special_effect.get()),
                 str(self.selected_option_equipment_set.get()),
                 str(self.selected_option_equipment_range.get()),

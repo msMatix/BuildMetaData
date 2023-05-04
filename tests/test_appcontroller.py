@@ -15,12 +15,18 @@ from BuildMetaData.common import (
 
 from .fixtures import (
     meta_data_correct,
+    meta_data_correct_armor,
+    meta_data_correct_armor_json,
     meta_data_correct_json,
     meta_data_correct_no_optional,
     meta_data_correct_no_optional_json,
     meta_data_correct_no_special_attack,
     meta_data_correct_no_special_attack_json,
+    meta_data_correct_shield,
+    meta_data_correct_shield_json,
     meta_data_correct_uncommon,
+    meta_data_correct_weapon,
+    meta_data_correct_weapon_json,
     meta_data_file_not_found,
     meta_data_none,
     meta_data_none_json,
@@ -90,16 +96,16 @@ class TestAppControllerImageModell:
             data = json.load(f)
         assert data == meta_data_correct_json
 
-        # NOT USEFUL -> item/background image paths are not fixed
-        # cwd = os.getcwd()
-        # path_image_png = os.path.join(
-        #     cwd, f"{PATH_RESULT_PNG}/DARKFIRE{IMAGE_PNG}"
-        # )
-        # path_image_webp = os.path.join(
-        #     cwd, f"{PATH_RESULT_WEBP}/DARKFIRE{IMAGE_WEBP}"
-        # )
-        # assert os.path.isfile(path_image_png)
-        # assert os.path.isfile(path_image_webp)
+    # NOT USEFUL -> item/background image paths are not fixed
+    # cwd = os.getcwd()
+    # path_image_png = os.path.join(
+    #     cwd, f"{PATH_RESULT_PNG}/DARKFIRE{IMAGE_PNG}"
+    # )
+    # path_image_webp = os.path.join(
+    #     cwd, f"{PATH_RESULT_WEBP}/DARKFIRE{IMAGE_WEBP}"
+    # )
+    # assert os.path.isfile(path_image_png)
+    # assert os.path.isfile(path_image_webp)
 
     def test_okay_save_meta_data_and_images_no_special_attack_defined(
         self,
@@ -157,6 +163,57 @@ class TestAppControllerImageModell:
         with open(path_to_file) as f:
             data = json.load(f)
         assert data == meta_data_correct_no_optional_json
+
+    def test_okay_save_meta_data_and_images_armor(
+        self,
+        mock_app_controller,
+        meta_data_correct_armor,
+        meta_data_correct_armor_json,
+    ):
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_JSON}"
+
+        # generate file
+        print(path_to_file)
+        mock_app_controller.save_data(meta_data_correct_armor)
+
+        # read file
+        with open(path_to_file) as f:
+            data = json.load(f)
+        assert data == meta_data_correct_armor_json
+
+    def test_okay_save_meta_data_and_images_shield(
+        self,
+        mock_app_controller,
+        meta_data_correct_shield,
+        meta_data_correct_shield_json,
+    ):
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_JSON}"
+
+        # generate file
+        print(path_to_file)
+        mock_app_controller.save_data(meta_data_correct_shield)
+
+        # read file
+        with open(path_to_file) as f:
+            data = json.load(f)
+        assert data == meta_data_correct_shield_json
+
+    def test_okay_save_meta_data_and_images_weapon(
+        self,
+        mock_app_controller,
+        meta_data_correct_weapon,
+        meta_data_correct_weapon_json,
+    ):
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_JSON}"
+
+        # generate file
+        print(path_to_file)
+        mock_app_controller.save_data(meta_data_correct_weapon)
+
+        # read file
+        with open(path_to_file) as f:
+            data = json.load(f)
+        assert data == meta_data_correct_weapon_json
 
     def test_false_no_rarity_selected(self, mock_app_controller, meta_data_rarity_none):
         mock_app_controller.save_data(meta_data_rarity_none)
