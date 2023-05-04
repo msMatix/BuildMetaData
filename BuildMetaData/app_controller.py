@@ -2,7 +2,13 @@ import os
 
 from PIL import Image
 
-from .common import IMAGE_PNG, IMAGE_WEBP, PATH_RESULT_PNG, PATH_RESULT_WEBP
+from .common import (
+    IMAGE_PNG,
+    IMAGE_WEBP,
+    PATH_RESULT_PNG,
+    PATH_RESULT_WEBP,
+    equipment_mapping,
+)
 from .models.meta_model import ImageMetaModel
 from .models.rarity_model import RarityMetaModel
 from .views.meta_data_types import ERarity
@@ -38,6 +44,9 @@ class AppController:
 
         if res_meta_data and res_image_date and res_meta_rarity:  # pragma no cover
             self.views[ImageExplorerView].show_success("SUCCESS")
+
+    def get_base_equipment(self, selected_equipment):
+        return self.meta_model.enable_stats(equipment_mapping[selected_equipment])
 
     ################################################################################
     # SAVE META DATA

@@ -1,32 +1,11 @@
 import json
 from dataclasses import dataclass
 
-from ..common import FILE_JSON, IMAGE_WEBP, PATH_META_DATA, URL_LINK
+from varname import nameof
+
+from ..common import FILE_JSON, IMAGE_WEBP, PATH_META_DATA, URL_LINK, equipment_mapping
 from ..exception import NoValidBaseStatSelected
 from ..views.meta_data_types import EBaseEquipment, EEquipmentType
-
-# from varname import nameof
-
-
-equipment_mapping = dict(
-    {
-        EEquipmentType.HELMET.value: EBaseEquipment.ARMOR.value,
-        EEquipmentType.ARMOR.value: EBaseEquipment.ARMOR.value,
-        EEquipmentType.BRACERS.value: EBaseEquipment.ARMOR.value,
-        EEquipmentType.BOOTS.value: EBaseEquipment.ARMOR.value,
-        EEquipmentType.SHIELD_1H.value: EBaseEquipment.SHIELD.value,
-        EEquipmentType.BOW_2H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.SWORD_2H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.SWORD_1H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.AXE_2H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.AXE_1H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.HAMMER_2H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.HAMMER_1H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.LANCE_1H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.GUN_1H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.WAND_1H.value: EBaseEquipment.WEAPON.value,
-    }
-)
 
 
 @dataclass
@@ -87,6 +66,27 @@ class ImageMetaModel:
                 self.equipment_type,
                 str(self.weight),
                 self.equipment_set,
+            ]
+        else:
+            raise NoValidBaseStatSelected(
+                "Select a correct base stat."
+            )  # pragma no cover
+
+    def enable_stats(self, equipment):
+        if "armor" in equipment:
+            return nameof(self.defense)
+        elif "shield" in equipment:
+            return nameof(self.defense)
+        elif "weapon" in equipment:
+            return [nameof(self.power), nameof(self.attack_speed)]
+        elif "base" in equipment:
+            return [
+                nameof(self.name),
+                nameof(self.description),
+                nameof(self.rarity),
+                nameof(self.equipment_type),
+                nameof(self.weight),
+                nameof(self.equipment_set),
             ]
         else:
             raise NoValidBaseStatSelected(

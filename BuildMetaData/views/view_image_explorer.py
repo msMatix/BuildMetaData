@@ -121,7 +121,10 @@ class ImageExplorerView(tk.Frame):
             for equipment_type in EEquipmentType
         }
         dropdown_equipment_type = tk.OptionMenu(
-            self, self.selected_option_equipment_type, *equipment_type_options
+            self,
+            self.selected_option_equipment_type,
+            *equipment_type_options,
+            command=self.enable_equipment_stats,
         )
         dropdown_equipment_type.config(width=10)
         dropdown_equipment_type.place(x=100, y=100, anchor="center")
@@ -144,9 +147,11 @@ class ImageExplorerView(tk.Frame):
         # POWER
         self.selected_option_power.set(EPower.NONE.value)
         power_options = {power.value: power.value for power in EPower}
-        dropdown_power = tk.OptionMenu(self, self.selected_option_power, *power_options)
-        dropdown_power.config(width=10)
-        dropdown_power.place(x=250, y=100, anchor="center")
+        self.dropdown_power = tk.OptionMenu(
+            self, self.selected_option_power, *power_options
+        )
+        self.dropdown_power.config(width=10, state="disabled")
+        self.dropdown_power.place(x=250, y=100, anchor="center")
 
         label_power = tk.Label(self, text="Select Power:")
         label_power.place(x=250, y=80, anchor="center")
@@ -154,16 +159,16 @@ class ImageExplorerView(tk.Frame):
         # DEFENSE
         self.selected_option_defense.set(EDefense.NONE.value)
         defense_options = {defense.value: defense.value for defense in EDefense}
-        dropdown_defense = tk.OptionMenu(
+        self.dropdown_defense = tk.OptionMenu(
             self, self.selected_option_defense, *defense_options
         )
-        dropdown_defense.config(width=10)
-        dropdown_defense.place(x=100, y=150, anchor="center")
+        self.dropdown_defense.config(width=10, state="disabled")
+        self.dropdown_defense.place(x=100, y=150, anchor="center")
 
         label_defense = tk.Label(self, text="Select defense:")
         label_defense.place(x=100, y=130, anchor="center")
 
-        # WEIGHT SPEED
+        # WEIGHT
         self.selected_option_weight.set(EWeight.NONE.value)
         weight_options = {weight.value: weight.value for weight in EWeight}
         dropdown_weight = tk.OptionMenu(
@@ -180,11 +185,11 @@ class ImageExplorerView(tk.Frame):
         attack_speed_options = {
             attack_speed.value: attack_speed.value for attack_speed in EAttackSpeed
         }
-        dropdown_attack_speed = tk.OptionMenu(
+        self.dropdown_attack_speed = tk.OptionMenu(
             self, self.selected_option_attack_speed, *attack_speed_options
         )
-        dropdown_attack_speed.config(width=10)
-        dropdown_attack_speed.place(x=400, y=150, anchor="center")
+        self.dropdown_attack_speed.config(width=10, state="disabled")
+        self.dropdown_attack_speed.place(x=400, y=150, anchor="center")
 
         label_attack_speed = tk.Label(self, text="Select attack speed:")
         label_attack_speed.place(x=400, y=130, anchor="center")
@@ -224,11 +229,11 @@ class ImageExplorerView(tk.Frame):
             equipment_range.value: equipment_range.value
             for equipment_range in EEquipmentRange
         }
-        dropdown_equipment_range = tk.OptionMenu(
+        self.dropdown_equipment_range = tk.OptionMenu(
             self, self.selected_option_equipment_range, *equipment_range_options
         )
-        dropdown_equipment_range.config(width=10)
-        dropdown_equipment_range.place(x=700, y=100, anchor="center")
+        self.dropdown_equipment_range.config(width=10, state="disabled")
+        self.dropdown_equipment_range.place(x=700, y=100, anchor="center")
 
         label_equipment_range = tk.Label(self, text="Select equipment range:")
         label_equipment_range.place(x=700, y=80, anchor="center")
@@ -337,6 +342,31 @@ class ImageExplorerView(tk.Frame):
         self.selected_option_special_effect.set(ESpecialEffect.NONE.value)
         self.selected_option_equipment_set.set(EEquipmentSet.NONE.value)
         self.selected_option_equipment_range.set(EEquipmentRange.NONE.value)
+
+    def enable_equipment_stats(self, *args):
+        stats_to_enable = self.controller.get_base_equipment(*args)
+        self.deactivate_all_changeable_equipments_stats_and_set_to_default()
+
+        # only activate allowed stats
+        if "power" in stats_to_enable:
+            self.dropdown_power.config(state="normal")
+        if "defense" in stats_to_enable:
+            self.dropdown_defense.config(state="normal")
+        if "attack_speed" in stats_to_enable:
+            self.dropdown_attack_speed.config(state="normal")
+        if "range" in stats_to_enable:
+            self.dropdown_equipment_range.config(state="normal")
+
+    def deactivate_all_changeable_equipments_stats_and_set_to_default(self):
+        self.selected_option_power.set(EPower.NONE.value)
+        self.selected_option_defense.set(EDefense.NONE.value)
+        self.selected_option_attack_speed.set(EAttackSpeed.NONE.value)
+        self.selected_option_equipment_range.set(EEquipmentRange.NONE.value)
+
+        self.dropdown_power.config(state="disabled")
+        self.dropdown_defense.config(state="disabled")
+        self.dropdown_attack_speed.config(state="disabled")
+        self.dropdown_equipment_range.config(state="disabled")
 
     ################################################################################
     # FILE EXPLORER
