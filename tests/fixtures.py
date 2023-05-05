@@ -108,6 +108,29 @@ def meta_data_correct_armor():
 
 
 @pytest.fixture(scope="function")
+def meta_data_wrong_armor():
+    data = list(
+        [
+            "DARKFIRE_WRONG",
+            "description",
+            "Uncommon",
+            "Armor",
+            "",
+            "",
+            "1",
+            "",
+            "",
+            "metal",
+            "",
+            99999999,
+            "no/path/necessary",
+        ]
+    )
+
+    return data
+
+
+@pytest.fixture(scope="function")
 def meta_data_correct_shield():
     data = list(
         [
@@ -130,6 +153,28 @@ def meta_data_correct_shield():
 
 
 @pytest.fixture(scope="function")
+def meta_data_wrong_shield():
+    data = list(
+        [
+            "DARKFIRE",
+            "description",
+            "Uncommon",
+            "Shield_1H",
+            "",
+            "",
+            "1",
+            "",
+            "",
+            "metal",
+            "",
+            99999999,
+            "no/path/necessary",
+        ]
+    )
+    return data
+
+
+@pytest.fixture(scope="function")
 def meta_data_correct_weapon():
     data = list(
         [
@@ -138,6 +183,28 @@ def meta_data_correct_weapon():
             "Uncommon",
             "Bow_2H",
             "1",
+            "1",
+            "1",
+            "",
+            "",
+            "metal",
+            "",
+            99999999,
+            "no/path/necessary",
+        ]
+    )
+    return data
+
+
+@pytest.fixture(scope="function")
+def meta_data_wrong_weapon():
+    data = list(
+        [
+            "DARKFIRE",
+            "description",
+            "Uncommon",
+            "Bow_2H",
+            "",
             "1",
             "1",
             "",

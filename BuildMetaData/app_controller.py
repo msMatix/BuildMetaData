@@ -45,9 +45,6 @@ class AppController:
         if res_meta_data and res_image_date and res_meta_rarity:  # pragma no cover
             self.views[ImageExplorerView].show_success("SUCCESS")
 
-    def get_base_equipment(self, selected_equipment):
-        return self.meta_model.enable_stats(equipment_mapping[selected_equipment])
-
     ################################################################################
     # SAVE META DATA
     def __save_meta_data(self, data):

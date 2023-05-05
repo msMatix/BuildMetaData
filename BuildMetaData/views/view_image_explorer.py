@@ -5,6 +5,7 @@ from tkinter import filedialog
 
 from PIL import Image, ImageTk
 
+from ..common import equipment_mapping
 from .meta_data_types import (
     EAttackSpeed,
     EDefense,
@@ -344,29 +345,32 @@ class ImageExplorerView(tk.Frame):
         self.selected_option_equipment_range.set(EEquipmentRange.NONE.value)
 
     def enable_equipment_stats(self, *args):
-        stats_to_enable = self.controller.get_base_equipment(*args)
-        self.deactivate_all_changeable_equipments_stats_and_set_to_default()
+        self.set_stats_to_default()
+        self.deactivate_all_changeable_equipments_stats()
+        self.enable_stats_for_view(*args)
 
-        # only activate allowed stats
-        if "power" in stats_to_enable:
-            self.dropdown_power.config(state="normal")
-        if "defense" in stats_to_enable:
+    def enable_stats_for_view(self, equipment):
+        base_equipment = equipment_mapping[equipment]
+        if "armor" in base_equipment:
             self.dropdown_defense.config(state="normal")
-        if "attack_speed" in stats_to_enable:
+        elif "shield" in base_equipment:
+            self.dropdown_defense.config(state="normal")
+        elif "weapon" in base_equipment:
+            self.dropdown_power.config(state="normal")
             self.dropdown_attack_speed.config(state="normal")
-        if "range" in stats_to_enable:
             self.dropdown_equipment_range.config(state="normal")
 
-    def deactivate_all_changeable_equipments_stats_and_set_to_default(self):
-        self.selected_option_power.set(EPower.NONE.value)
-        self.selected_option_defense.set(EDefense.NONE.value)
-        self.selected_option_attack_speed.set(EAttackSpeed.NONE.value)
-        self.selected_option_equipment_range.set(EEquipmentRange.NONE.value)
-
+    def deactivate_all_changeable_equipments_stats(self):
         self.dropdown_power.config(state="disabled")
         self.dropdown_defense.config(state="disabled")
         self.dropdown_attack_speed.config(state="disabled")
         self.dropdown_equipment_range.config(state="disabled")
+
+    def set_stats_to_default(self):
+        self.selected_option_power.set(EPower.NONE.value)
+        self.selected_option_defense.set(EDefense.NONE.value)
+        self.selected_option_attack_speed.set(EAttackSpeed.NONE.value)
+        self.selected_option_equipment_range.set(EEquipmentRange.NONE.value)
 
     ################################################################################
     # FILE EXPLORER

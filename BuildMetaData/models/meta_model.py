@@ -43,15 +43,15 @@ class ImageMetaModel:
         return meta_data
 
     def validate_meta_data(self, equipment):
-        equipment_stats = self.get_necessary_stats(equipment)
-        base_stats = self.get_necessary_stats("base")
+        equipment_stats = self.check_stats(equipment)
+        base_stats = self.check_stats("base")
 
         result_equipment = any(not attr for attr in equipment_stats)
         result_base = any(not attr for attr in base_stats)
 
         return result_base or result_equipment
 
-    def get_necessary_stats(self, equipment):
+    def check_stats(self, equipment):
         if "armor" in equipment:
             return [str(self.defense)]
         elif "shield" in equipment:
@@ -66,27 +66,6 @@ class ImageMetaModel:
                 self.equipment_type,
                 str(self.weight),
                 self.equipment_set,
-            ]
-        else:
-            raise NoValidBaseStatSelected(
-                "Select a correct base stat."
-            )  # pragma no cover
-
-    def enable_stats(self, equipment):
-        if "armor" in equipment:
-            return nameof(self.defense)
-        elif "shield" in equipment:
-            return nameof(self.defense)
-        elif "weapon" in equipment:
-            return [nameof(self.power), nameof(self.attack_speed)]
-        elif "base" in equipment:
-            return [
-                nameof(self.name),
-                nameof(self.description),
-                nameof(self.rarity),
-                nameof(self.equipment_type),
-                nameof(self.weight),
-                nameof(self.equipment_set),
             ]
         else:
             raise NoValidBaseStatSelected(

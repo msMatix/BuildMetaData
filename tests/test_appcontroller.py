@@ -2,6 +2,8 @@ import json
 import os
 import shutil
 
+import pytest
+
 from BuildMetaData.common import (
     FILE_JSON,
     FILE_RARITY,
@@ -32,6 +34,9 @@ from .fixtures import (
     meta_data_none_json,
     meta_data_rarity_json,
     meta_data_rarity_none,
+    meta_data_wrong_armor,
+    meta_data_wrong_shield,
+    meta_data_wrong_weapon,
     mock_app_controller,
     mock_meta_model,
     mock_path_model,
@@ -156,7 +161,6 @@ class TestAppControllerImageModell:
         path_to_file = f"./{PATH_META_DATA}DARKFIRE2{FILE_JSON}"
 
         # generate file
-        print(path_to_file)
         mock_app_controller.save_data(meta_data_correct_no_optional)
 
         # read file
@@ -181,6 +185,18 @@ class TestAppControllerImageModell:
             data = json.load(f)
         assert data == meta_data_correct_armor_json
 
+    def test_false_save_meta_data_and_images_armor(
+        self,
+        mock_app_controller,
+        meta_data_wrong_armor,
+    ):
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE_WRONG{FILE_JSON}"
+        # generate file
+        mock_app_controller.save_data(meta_data_wrong_armor)
+        with pytest.raises(FileNotFoundError):
+            with open(path_to_file) as f:
+                data = json.load(f)
+
     def test_okay_save_meta_data_and_images_shield(
         self,
         mock_app_controller,
@@ -190,13 +206,24 @@ class TestAppControllerImageModell:
         path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_JSON}"
 
         # generate file
-        print(path_to_file)
         mock_app_controller.save_data(meta_data_correct_shield)
 
         # read file
         with open(path_to_file) as f:
             data = json.load(f)
         assert data == meta_data_correct_shield_json
+
+    def test_false_save_meta_data_and_images_shield(
+        self,
+        mock_app_controller,
+        meta_data_wrong_shield,
+    ):
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE_WRONG{FILE_JSON}"
+        # generate file
+        mock_app_controller.save_data(meta_data_wrong_shield)
+        with pytest.raises(FileNotFoundError):
+            with open(path_to_file) as f:
+                data = json.load(f)
 
     def test_okay_save_meta_data_and_images_weapon(
         self,
@@ -207,13 +234,24 @@ class TestAppControllerImageModell:
         path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_JSON}"
 
         # generate file
-        print(path_to_file)
         mock_app_controller.save_data(meta_data_correct_weapon)
 
         # read file
         with open(path_to_file) as f:
             data = json.load(f)
         assert data == meta_data_correct_weapon_json
+
+    def test_false_save_meta_data_and_images_weapon(
+        self,
+        mock_app_controller,
+        meta_data_wrong_weapon,
+    ):
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE_WRONG{FILE_JSON}"
+        # generate file
+        mock_app_controller.save_data(meta_data_wrong_weapon)
+        with pytest.raises(FileNotFoundError):
+            with open(path_to_file) as f:
+                data = json.load(f)
 
     def test_false_no_rarity_selected(self, mock_app_controller, meta_data_rarity_none):
         mock_app_controller.save_data(meta_data_rarity_none)
