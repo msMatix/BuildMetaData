@@ -20,6 +20,7 @@ from .fixtures import (
     meta_data_correct_armor,
     meta_data_correct_armor_json,
     meta_data_correct_duplicate,
+    meta_data_correct_duplicate_json,
     meta_data_correct_duplicate_uncommon,
     meta_data_correct_json,
     meta_data_correct_no_optional,
@@ -89,6 +90,7 @@ class TestAppControllerImageModell:
         meta_data_correct_duplicate,
         meta_data_rarity_json,
         meta_data_correct_duplicate_uncommon,
+        meta_data_correct_duplicate_json,
     ):
         path_to_file = f"./{FILE_RARITY}"
 
@@ -106,6 +108,11 @@ class TestAppControllerImageModell:
         with open(path_to_file) as f:
             data = json.load(f)
         assert data == meta_data_rarity_json
+
+        path_to_json = f"./{PATH_META_DATA}DARKFIRE_DUPLICATE{FILE_JSON}"
+        with open(path_to_json) as f:
+            data = json.load(f)
+        assert data == meta_data_correct_duplicate_json
 
     def test_okay_save_meta_data_none_input(self, mock_app_controller, meta_data_none):
         path_to_file = f"./{PATH_META_DATA}DARKFIRE_NONE{FILE_JSON}"

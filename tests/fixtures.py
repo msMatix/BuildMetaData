@@ -396,6 +396,27 @@ def meta_data_correct_json():
 
 
 @pytest.fixture(scope="function")
+def meta_data_correct_duplicate_json():
+    data = dict(
+        {
+            "name": "DARKFIRE_DUPLICATE",
+            "description": "description",
+            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE_DUPLICATE.webp",
+            "rarity": "Epic",
+            "equipment_type": "Gun_1H",
+            "power": 1,
+            "attack_speed": 1,
+            "weight": 1,
+            "defense": 1,
+            "special_effect": "fireball",
+            "equipment_set": "metal",
+            "equipment_range": 1,
+        }
+    )
+    return data
+
+
+@pytest.fixture(scope="function")
 def meta_data_correct_armor_json():
     data = dict(
         {
