@@ -96,7 +96,7 @@ class TestAppControllerImageModell:
         mock_app_controller.save_data(meta_data_correct_duplicate)
 
         # check if nft exist two times in the same rarity
-        mock_app_controller.save_data(meta_data_correct)
+        mock_app_controller.save_data(meta_data_correct_duplicate)
         with open(path_to_file) as f:
             data = json.load(f)
         assert data == meta_data_rarity_json
