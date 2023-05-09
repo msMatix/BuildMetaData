@@ -19,6 +19,8 @@ from .fixtures import (
     meta_data_correct,
     meta_data_correct_armor,
     meta_data_correct_armor_json,
+    meta_data_correct_duplicate,
+    meta_data_correct_duplicate_uncommon,
     meta_data_correct_json,
     meta_data_correct_no_optional,
     meta_data_correct_no_optional_json,
@@ -81,8 +83,32 @@ class TestAppControllerImageModell:
 
     ################################################################################
     # TESTS
+    def test_okay_save_meta_data_and_images_and_no_duplicate_rarity(
+        self,
+        mock_app_controller,
+        meta_data_correct_duplicate,
+        meta_data_rarity_json,
+        meta_data_correct_duplicate_uncommon,
+    ):
+        path_to_file = f"./{FILE_RARITY}"
+
+        # generate file
+        mock_app_controller.save_data(meta_data_correct_duplicate)
+
+        # check if nft exist two times in the same rarity
+        mock_app_controller.save_data(meta_data_correct)
+        with open(path_to_file) as f:
+            data = json.load(f)
+        assert data == meta_data_rarity_json
+
+        # Check whether in the case of a new creation of an already existing nft only in the case of other rarity none is created
+        mock_app_controller.save_data(meta_data_correct_duplicate_uncommon)
+        with open(path_to_file) as f:
+            data = json.load(f)
+        assert data == meta_data_rarity_json
+
     def test_okay_save_meta_data_none_input(self, mock_app_controller, meta_data_none):
-        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_JSON}"
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE_NONE{FILE_JSON}"
         mock_app_controller.save_data(meta_data_none)
         assert not os.path.isfile(path_to_file)
 
@@ -118,7 +144,7 @@ class TestAppControllerImageModell:
         meta_data_correct_no_special_attack,
         meta_data_correct_no_special_attack_json,
     ):
-        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_JSON}"
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE_NO_SPECIAL{FILE_JSON}"
 
         # generate file
         mock_app_controller.save_data(meta_data_correct_no_special_attack)
@@ -127,30 +153,6 @@ class TestAppControllerImageModell:
         with open(path_to_file) as f:
             data = json.load(f)
         assert data == meta_data_correct_no_special_attack_json
-
-    def test_okay_save_meta_data_and_images_and_no_duplicate_rarity(
-        self,
-        mock_app_controller,
-        meta_data_correct,
-        meta_data_rarity_json,
-        meta_data_correct_uncommon,
-    ):
-        path_to_file = f"./{FILE_RARITY}"
-
-        # generate file
-        mock_app_controller.save_data(meta_data_correct)
-
-        # check if nft exist two times in the same rarity
-        mock_app_controller.save_data(meta_data_correct)
-        with open(path_to_file) as f:
-            data = json.load(f)
-        assert data == meta_data_rarity_json
-
-        # Check whether in the case of a new creation of an already existing nft only in the case of other rarity none is created
-        mock_app_controller.save_data(meta_data_correct_uncommon)
-        with open(path_to_file) as f:
-            data = json.load(f)
-        assert data == meta_data_rarity_json
 
     def test_okay_save_meta_data_and_images_no_optional_defined(
         self,
@@ -174,10 +176,9 @@ class TestAppControllerImageModell:
         meta_data_correct_armor,
         meta_data_correct_armor_json,
     ):
-        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_JSON}"
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE_ARMOR{FILE_JSON}"
 
         # generate file
-        print(path_to_file)
         mock_app_controller.save_data(meta_data_correct_armor)
 
         # read file
@@ -190,7 +191,7 @@ class TestAppControllerImageModell:
         mock_app_controller,
         meta_data_wrong_armor,
     ):
-        path_to_file = f"./{PATH_META_DATA}DARKFIRE_WRONG{FILE_JSON}"
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE_WRONG_ARMOR{FILE_JSON}"
         # generate file
         mock_app_controller.save_data(meta_data_wrong_armor)
         with pytest.raises(FileNotFoundError):
@@ -203,7 +204,7 @@ class TestAppControllerImageModell:
         meta_data_correct_shield,
         meta_data_correct_shield_json,
     ):
-        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_JSON}"
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE_SHIELD{FILE_JSON}"
 
         # generate file
         mock_app_controller.save_data(meta_data_correct_shield)
@@ -231,7 +232,7 @@ class TestAppControllerImageModell:
         meta_data_correct_weapon,
         meta_data_correct_weapon_json,
     ):
-        path_to_file = f"./{PATH_META_DATA}DARKFIRE{FILE_JSON}"
+        path_to_file = f"./{PATH_META_DATA}DARKFIRE_WEAPON{FILE_JSON}"
 
         # generate file
         mock_app_controller.save_data(meta_data_correct_weapon)

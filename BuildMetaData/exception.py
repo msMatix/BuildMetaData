@@ -4,3 +4,7 @@ class NFTAlreadyExist(Exception):
 
 class NoValidBaseStatSelected(Exception):
     pass
+
+
+class NoValidMetaData(Exception):
+    pass

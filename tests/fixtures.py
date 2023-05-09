@@ -64,6 +64,28 @@ def meta_data_correct():
 
 
 @pytest.fixture(scope="function")
+def meta_data_correct_duplicate():
+    data = list(
+        [
+            "DARKFIRE_DUPLICATE",
+            "description",
+            "Epic",
+            "Gun_1H",
+            1,
+            1,
+            1,
+            1,
+            "fireball",
+            "metal",
+            1,
+            99999999,
+            "no/path/necessary",
+        ]
+    )
+    return data
+
+
+@pytest.fixture(scope="function")
 def meta_data_correct_uncommon():
     data = list(
         [
@@ -86,10 +108,32 @@ def meta_data_correct_uncommon():
 
 
 @pytest.fixture(scope="function")
+def meta_data_correct_duplicate_uncommon():
+    data = list(
+        [
+            "DARKFIRE_DUPLICATE",
+            "description",
+            "Uncommon",
+            "Gun_1H",
+            1,
+            1,
+            1,
+            1,
+            "fireball",
+            "metal",
+            1,
+            99999999,
+            "no/path/necessary",
+        ]
+    )
+    return data
+
+
+@pytest.fixture(scope="function")
 def meta_data_correct_armor():
     data = list(
         [
-            "DARKFIRE",
+            "DARKFIRE_ARMOR",
             "description",
             "Uncommon",
             "Armor",
@@ -111,7 +155,7 @@ def meta_data_correct_armor():
 def meta_data_wrong_armor():
     data = list(
         [
-            "DARKFIRE_WRONG",
+            "DARKFIRE_WRONG_ARMOR",
             "description",
             "Uncommon",
             "Armor",
@@ -134,7 +178,7 @@ def meta_data_wrong_armor():
 def meta_data_correct_shield():
     data = list(
         [
-            "DARKFIRE",
+            "DARKFIRE_SHIELD",
             "description",
             "Uncommon",
             "Shield_1H",
@@ -156,7 +200,7 @@ def meta_data_correct_shield():
 def meta_data_wrong_shield():
     data = list(
         [
-            "DARKFIRE",
+            "DARKFIRE_SHIELD",
             "description",
             "Uncommon",
             "Shield_1H",
@@ -178,7 +222,7 @@ def meta_data_wrong_shield():
 def meta_data_correct_weapon():
     data = list(
         [
-            "DARKFIRE",
+            "DARKFIRE_WEAPON",
             "description",
             "Uncommon",
             "Bow_2H",
@@ -200,7 +244,7 @@ def meta_data_correct_weapon():
 def meta_data_wrong_weapon():
     data = list(
         [
-            "DARKFIRE",
+            "DARKFIRE_WEAPON",
             "description",
             "Uncommon",
             "Bow_2H",
@@ -222,7 +266,7 @@ def meta_data_wrong_weapon():
 def meta_data_correct_no_special_attack():
     data = list(
         [
-            "DARKFIRE",
+            "DARKFIRE_NO_SPECIAL",
             "description",
             "Epic",
             "Gun_1H",
@@ -310,7 +354,7 @@ def meta_data_file_not_found():
 def meta_data_none():
     data = list(
         [
-            "DARKFIRE",
+            "DARKFIRE_NONE",
             "",
             "Epic",
             "",
@@ -355,9 +399,9 @@ def meta_data_correct_json():
 def meta_data_correct_armor_json():
     data = dict(
         {
-            "name": "DARKFIRE",
+            "name": "DARKFIRE_ARMOR",
             "description": "description",
-            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE.webp",
+            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE_ARMOR.webp",
             "rarity": "Uncommon",
             "equipment_type": "Armor",
             "power": "",
@@ -376,9 +420,9 @@ def meta_data_correct_armor_json():
 def meta_data_correct_shield_json():
     data = dict(
         {
-            "name": "DARKFIRE",
+            "name": "DARKFIRE_SHIELD",
             "description": "description",
-            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE.webp",
+            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE_SHIELD.webp",
             "rarity": "Uncommon",
             "equipment_type": "Shield_1H",
             "power": "",
@@ -397,9 +441,9 @@ def meta_data_correct_shield_json():
 def meta_data_correct_weapon_json():
     data = dict(
         {
-            "name": "DARKFIRE",
+            "name": "DARKFIRE_WEAPON",
             "description": "description",
-            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE.webp",
+            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE_WEAPON.webp",
             "rarity": "Uncommon",
             "equipment_type": "Bow_2H",
             "power": "1",
@@ -418,9 +462,9 @@ def meta_data_correct_weapon_json():
 def meta_data_correct_no_special_attack_json():
     data = dict(
         {
-            "name": "DARKFIRE",
+            "name": "DARKFIRE_NO_SPECIAL",
             "description": "description",
-            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE.webp",
+            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE_NO_SPECIAL.webp",
             "rarity": "Epic",
             "equipment_type": "Gun_1H",
             "power": 1,
@@ -460,7 +504,7 @@ def meta_data_correct_no_optional_json():
 def meta_data_none_json():
     data = dict(
         {
-            "name": "DARKFIRE",
+            "name": "DARKFIRE_NONE",
             "description": "",
             "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE.webp",
             "rarity": "Epic",
@@ -485,7 +529,7 @@ def meta_data_rarity_json():
             "COMMON": {},
             "UNCOMMON": {},
             "RARE": {},
-            "EPIC": {"DARKFIRE": "DARKFIRE"},
+            "EPIC": {"DARKFIRE_DUPLICATE": "DARKFIRE_DUPLICATE"},
             "LEGENDARY": {},
             "UNIQUE": {},
         }

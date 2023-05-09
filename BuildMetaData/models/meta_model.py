@@ -1,11 +1,9 @@
 import json
+import os
 from dataclasses import dataclass
 
-from varname import nameof
-
 from ..common import FILE_JSON, IMAGE_WEBP, PATH_META_DATA, URL_LINK, equipment_mapping
-from ..exception import NoValidBaseStatSelected
-from ..views.meta_data_types import EBaseEquipment, EEquipmentType
+from ..exception import NFTAlreadyExist, NoValidBaseStatSelected, NoValidMetaData
 
 
 @dataclass
@@ -74,13 +72,17 @@ class ImageMetaModel:
 
     def save(self):
         if self.validate_meta_data(equipment_mapping[self.equipment_type]):
-            return False
+            raise NoValidMetaData
 
         data_json_format = self.generate_meta_data()
         file_name = str(self.name)
+        path = PATH_META_DATA + file_name + FILE_JSON
+
+        if os.path.isfile(path):
+            raise NFTAlreadyExist("NFT name already awarded.")
 
         with open(
-            PATH_META_DATA + file_name + FILE_JSON,
+            path,
             "w",
             encoding="utf-8",
         ) as f:
