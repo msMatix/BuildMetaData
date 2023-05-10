@@ -215,11 +215,11 @@ class ImageExplorerView(tk.Frame):
         equipment_set_options = {
             equipment_set.value: equipment_set.value for equipment_set in EEquipmentSet
         }
-        dropdown_equipment_set = tk.OptionMenu(
+        self.dropdown_equipment_set = tk.OptionMenu(
             self, self.selected_option_equipment_set, *equipment_set_options
         )
-        dropdown_equipment_set.config(width=10)
-        dropdown_equipment_set.place(x=550, y=150, anchor="center")
+        self.dropdown_equipment_set.config(width=10, state="disabled")
+        self.dropdown_equipment_set.place(x=550, y=150, anchor="center")
 
         label_equipment_set = tk.Label(self, text="Select equipment set:")
         label_equipment_set.place(x=550, y=130, anchor="center")
@@ -353,8 +353,10 @@ class ImageExplorerView(tk.Frame):
         base_equipment = equipment_mapping[equipment]
         if "armor" in base_equipment:
             self.dropdown_defense.config(state="normal")
+            self.dropdown_equipment_set.config(state="normal")
         elif "shield" in base_equipment:
             self.dropdown_defense.config(state="normal")
+            self.dropdown_equipment_set.config(state="normal")
         elif "weapon" in base_equipment:
             self.dropdown_power.config(state="normal")
             self.dropdown_attack_speed.config(state="normal")
@@ -364,6 +366,7 @@ class ImageExplorerView(tk.Frame):
         self.dropdown_power.config(state="disabled")
         self.dropdown_defense.config(state="disabled")
         self.dropdown_attack_speed.config(state="disabled")
+        self.dropdown_equipment_set.config(state="disabled")
         self.dropdown_equipment_range.config(state="disabled")
 
     def set_stats_to_default(self):
@@ -371,6 +374,7 @@ class ImageExplorerView(tk.Frame):
         self.selected_option_defense.set(EDefense.NONE.value)
         self.selected_option_attack_speed.set(EAttackSpeed.NONE.value)
         self.selected_option_equipment_range.set(EEquipmentRange.NONE.value)
+        self.selected_option_equipment_set.set(EEquipmentSet.NONE.value)
 
     ################################################################################
     # FILE EXPLORER

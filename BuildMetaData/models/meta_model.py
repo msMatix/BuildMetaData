@@ -51,9 +51,9 @@ class ImageMetaModel:
 
     def check_stats(self, equipment):
         if "armor" in equipment:
-            return [str(self.defense)]
+            return [str(self.defense), self.equipment_set]
         elif "shield" in equipment:
-            return [str(self.defense)]
+            return [str(self.defense), self.equipment_set]
         elif "weapon" in equipment:
             return [str(self.power), str(self.attack_speed)]
         elif "base" in equipment:
@@ -63,7 +63,6 @@ class ImageMetaModel:
                 self.rarity,
                 self.equipment_type,
                 str(self.weight),
-                self.equipment_set,
             ]
         else:
             raise NoValidBaseStatSelected(
