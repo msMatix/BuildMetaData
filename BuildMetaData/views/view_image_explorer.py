@@ -244,11 +244,11 @@ class ImageExplorerView(tk.Frame):
         self.input_field_name.config(width=100)
         self.input_field_name.place(x=400, y=250, anchor="center")
         label_name = tk.Label(self, text="Name:")
-        label_name.place(x=70, y=230, anchor="center")
+        label_name.place(x=70, y=225, anchor="center")
         # DESCRIPTION
-        self.input_field_description = tk.Entry(self)
-        self.input_field_description.config(width=100)
-        self.input_field_description.place(x=400, y=300, anchor="center")
+        self.input_field_description = tk.Text(self)
+        self.input_field_description.config(width=100, height=5)
+        self.input_field_description.place(x=400, y=340, anchor="center")
         label_description = tk.Label(self, text="Description:")
         label_description.place(x=80, y=280, anchor="center")
 
@@ -316,7 +316,7 @@ class ImageExplorerView(tk.Frame):
         data = list(
             [
                 self.input_field_name.get().strip(),
-                self.input_field_description.get(),
+                self.input_field_description.get("1.0", "end-1c"),
                 str(self.selected_option_rarity.get()),
                 str(self.selected_option_equipment_type.get()),
                 str(self.selected_option_power.get()),
