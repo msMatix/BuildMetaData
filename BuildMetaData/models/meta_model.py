@@ -29,14 +29,14 @@ class ImageMetaModel:
             "description": self.description,
             "image_url": f"{URL_LINK}{self.name}",
             "rarity": self.rarity,
-            "equipment_type": self.equipment_type,
+            "type": self.equipment_type,
             "power": self.power,
-            "attack_speed": self.attack_speed,
+            "attackSpeed": self.attack_speed,
             "weight": self.weight,
             "defense": self.defense,
-            "special_effect": self.special_effect,
-            "equipment_set": self.equipment_set,
-            "equipment_range": self.equipment_range,
+            "effect": self.special_effect,
+            "set": self.equipment_set,
+            "range": self.equipment_range,
         }
         return meta_data
 

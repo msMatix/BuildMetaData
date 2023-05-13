@@ -382,14 +382,14 @@ def meta_data_correct_json():
             "description": "description",
             "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE",
             "rarity": "Epic",
-            "equipment_type": "Gun_1H",
+            "type": "Gun_1H",
             "power": 1,
-            "attack_speed": 1,
+            "attackSpeed": 1,
             "weight": 1,
             "defense": 1,
-            "special_effect": "fireball",
-            "equipment_set": "",
-            "equipment_range": 1,
+            "effect": "fireball",
+            "set": "",
+            "range": 1,
         }
     )
     return data
@@ -403,14 +403,14 @@ def meta_data_correct_duplicate_json():
             "description": "description",
             "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE_DUPLICATE",
             "rarity": "Epic",
-            "equipment_type": "Gun_1H",
+            "type": "Gun_1H",
             "power": 1,
-            "attack_speed": 1,
+            "attackSpeed": 1,
             "weight": 1,
             "defense": 1,
-            "special_effect": "fireball",
-            "equipment_set": "",
-            "equipment_range": 1,
+            "effect": "fireball",
+            "set": "",
+            "range": 1,
         }
     )
     return data
@@ -424,14 +424,14 @@ def meta_data_correct_armor_json():
             "description": "description",
             "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE_ARMOR",
             "rarity": "Uncommon",
-            "equipment_type": "Armor",
+            "type": "Armor",
             "power": "",
-            "attack_speed": "",
+            "attackSpeed": "",
             "weight": "1",
             "defense": "1",
-            "special_effect": "",
-            "equipment_set": "metal",
-            "equipment_range": "",
+            "effect": "",
+            "set": "metal",
+            "range": "",
         }
     )
     return data
@@ -445,14 +445,14 @@ def meta_data_correct_shield_json():
             "description": "description",
             "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE_SHIELD",
             "rarity": "Uncommon",
-            "equipment_type": "Shield_1H",
+            "type": "Shield_1H",
             "power": "",
-            "attack_speed": "",
+            "attackSpeed": "",
             "weight": "1",
             "defense": "1",
-            "special_effect": "",
-            "equipment_set": "metal",
-            "equipment_range": "",
+            "effect": "",
+            "set": "metal",
+            "range": "",
         }
     )
     return data
@@ -466,14 +466,14 @@ def meta_data_correct_weapon_json():
             "description": "description",
             "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE_WEAPON",
             "rarity": "Uncommon",
-            "equipment_type": "Bow_2H",
+            "type": "Bow_2H",
             "power": "1",
-            "attack_speed": "1",
+            "attackSpeed": "1",
             "weight": "1",
             "defense": "",
-            "special_effect": "",
-            "equipment_set": "",
-            "equipment_range": "",
+            "effect": "",
+            "set": "",
+            "range": "",
         }
     )
     return data
@@ -487,14 +487,14 @@ def meta_data_correct_no_special_attack_json():
             "description": "description",
             "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE_NO_SPECIAL",
             "rarity": "Epic",
-            "equipment_type": "Gun_1H",
+            "type": "Gun_1H",
             "power": 1,
-            "attack_speed": 1,
+            "attackSpeed": 1,
             "weight": 1,
             "defense": 1,
-            "special_effect": "",
-            "equipment_set": "",
-            "equipment_range": 1,
+            "effect": "",
+            "set": "",
+            "range": 1,
         }
     )
     return data
@@ -508,14 +508,14 @@ def meta_data_correct_no_optional_json():
             "description": "description",
             "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE2",
             "rarity": "Epic",
-            "equipment_type": "Gun_1H",
+            "type": "Gun_1H",
             "power": "1",
-            "attack_speed": "1",
+            "attackSpeed": "1",
             "weight": "1",
             "defense": "",
-            "special_effect": "",
-            "equipment_set": "",
-            "equipment_range": "1",
+            "effect": "",
+            "set": "",
+            "range": "1",
         }
     )
     return data
@@ -529,14 +529,14 @@ def meta_data_none_json():
             "description": "",
             "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE",
             "rarity": "Epic",
-            "equipment_type": "",
+            "type": "",
             "power": "",
-            "attack_speed": "",
+            "attackSpeed": "",
             "weight": "",
             "defense": "",
-            "special_effect": "",
-            "equipment_set": "",
-            "equipment_range": "",
+            "effect": "",
+            "set": "",
+            "range": "",
         }
     )
     return data
