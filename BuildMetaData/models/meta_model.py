@@ -27,7 +27,7 @@ class ImageMetaModel:
         meta_data = {
             "name": self.name,
             "description": self.description,
-            "image_url": f"{URL_LINK}{self.name}{IMAGE_WEBP}",
+            "image_url": f"{URL_LINK}{self.name}",
             "rarity": self.rarity,
             "equipment_type": self.equipment_type,
             "power": self.power,
