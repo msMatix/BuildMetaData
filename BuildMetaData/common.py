@@ -31,20 +31,17 @@ URL_LINK = "https://dev.api.valtreas.com/metadata/images/equipment/"
 # EQUIPMENT MAPPING
 equipment_mapping = dict(
     {
-        EEquipmentType.HELMET.value: EBaseEquipment.ARMOR.value,
-        EEquipmentType.ARMOR.value: EBaseEquipment.ARMOR.value,
-        EEquipmentType.BRACERS.value: EBaseEquipment.ARMOR.value,
-        EEquipmentType.BOOTS.value: EBaseEquipment.ARMOR.value,
-        EEquipmentType.SHIELD_1H.value: EBaseEquipment.SHIELD.value,
-        EEquipmentType.BOW_2H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.SWORD_2H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.SWORD_1H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.AXE_2H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.AXE_1H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.HAMMER_2H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.HAMMER_1H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.LANCE_1H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.GUN_1H.value: EBaseEquipment.WEAPON.value,
-        EEquipmentType.WAND_1H.value: EBaseEquipment.WEAPON.value,
+        EEquipmentType.Helmet.value: EBaseEquipment.ARMOR.value,
+        EEquipmentType.Armor.value: EBaseEquipment.ARMOR.value,
+        EEquipmentType.Bracers.value: EBaseEquipment.ARMOR.value,
+        EEquipmentType.Boots.value: EBaseEquipment.ARMOR.value,
+        EEquipmentType.Shield.value: EBaseEquipment.SHIELD.value,
+        EEquipmentType.Bow.value: EBaseEquipment.WEAPON.value,
+        EEquipmentType.Sword.value: EBaseEquipment.WEAPON.value,
+        EEquipmentType.Axe.value: EBaseEquipment.WEAPON.value,
+        EEquipmentType.Hammer.value: EBaseEquipment.WEAPON.value,
+        EEquipmentType.Lance.value: EBaseEquipment.WEAPON.value,
+        EEquipmentType.Gun.value: EBaseEquipment.WEAPON.value,
+        EEquipmentType.Wand.value: EBaseEquipment.WEAPON.value,
     }
 )
