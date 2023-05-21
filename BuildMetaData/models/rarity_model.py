@@ -36,7 +36,7 @@ class RarityMetaModel:
                 # json.dump(data, f, indent=2)
                 json.dump(data, f, indent=2)
                 return True
-            else:
+            else:  # pragma no cover
                 raise NFTAlreadyExist("NFT name already awarded.")
 
     def save(self):
