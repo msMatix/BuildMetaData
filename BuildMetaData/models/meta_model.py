@@ -30,7 +30,7 @@ class ImageMetaModel:
             "image_url": f"{URL_LINK}{self.name}",
             "rarity": self.rarity,
             "type": self.equipment_type,
-            "power": self.power,
+            "damage": self.power,
             "attackSpeed": self.attack_speed,
             "weight": self.weight,
             "defense": self.defense,
