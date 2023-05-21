@@ -17,7 +17,7 @@ class RarityMetaModel:
         rarity_dict = {}
         for enum_value in ERarity:
             # generate json sections which store a dict
-            rarity_dict[enum_value.name] = {}
+            rarity_dict[enum_value.name] = list([])
 
         with open(FILE_RARITY, "w") as f:
             json.dump(rarity_dict, f)
@@ -31,7 +31,7 @@ class RarityMetaModel:
         with open(FILE_RARITY, "r+") as f:
             data = json.load(f)
             if RarityMetaModel.nft_name_available(new_data, data):
-                data[ERarity(rarity).name] = dict({new_data: new_data})
+                data[ERarity(rarity).name].append(dict({new_data: new_data}))
                 f.seek(0)
                 json.dump(data, f, indent=2)
                 return True

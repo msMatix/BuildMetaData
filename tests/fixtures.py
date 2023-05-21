@@ -546,13 +546,13 @@ def meta_data_none_json():
 def meta_data_rarity_json():
     data = dict(
         {
-            "NONE": {},
-            "COMMON": {},
-            "UNCOMMON": {},
-            "RARE": {},
-            "EPIC": {"DARKFIRE_DUPLICATE": "DARKFIRE_DUPLICATE"},
-            "LEGENDARY": {},
-            "UNIQUE": {},
+            "NONE": [],
+            "COMMON": [],
+            "UNCOMMON": [],
+            "RARE": [],
+            "EPIC": [{"DARKFIRE_DUPLICATE": "DARKFIRE_DUPLICATE"}],
+            "LEGENDARY": [],
+            "UNIQUE": [],
         }
     )
     return data
