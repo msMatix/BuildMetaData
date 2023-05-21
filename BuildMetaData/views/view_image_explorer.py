@@ -309,6 +309,7 @@ class ImageExplorerView(tk.Frame):
         self.hide(self.current_idx)
         self.current_idx = (self.current_idx + direction) % len(self.images)
         self.show(self.current_idx)
+        self.set_all_stats_to_default()
 
     ################################################################################
     # META-DATA
@@ -375,6 +376,11 @@ class ImageExplorerView(tk.Frame):
         self.selected_option_attack_speed.set(EAttackSpeed.NONE.value)
         self.selected_option_equipment_range.set(EEquipmentRange.NONE.value)
         self.selected_option_equipment_set.set(EEquipmentSet.NONE.value)
+
+    def set_all_stats_to_default(self):
+        self.set_stats_to_default()
+        self.input_field_name.delete(0, tk.END)
+        self.input_field_description.delete("1.0", tk.END)
 
     ################################################################################
     # FILE EXPLORER

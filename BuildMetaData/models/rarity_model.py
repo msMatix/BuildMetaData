@@ -33,6 +33,7 @@ class RarityMetaModel:
             if RarityMetaModel.nft_name_available(new_data, data):
                 data[ERarity(rarity).name].append(dict({new_data: new_data}))
                 f.seek(0)
+                # json.dump(data, f, indent=2)
                 json.dump(data, f, indent=2)
                 return True
             else:
