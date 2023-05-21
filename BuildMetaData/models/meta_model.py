@@ -53,7 +53,7 @@ class ImageMetaModel:
         if "armor" in equipment:
             return [str(self.defense), self.equipment_set]
         elif "shield" in equipment:
-            return [str(self.defense), self.equipment_set]
+            return [str(self.defense)]
         elif "weapon" in equipment:
             return [str(self.power), str(self.attack_speed)]
         elif "base" in equipment:

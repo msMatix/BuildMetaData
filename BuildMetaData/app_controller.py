@@ -36,9 +36,11 @@ class AppController:
     # META DATA MODEL
     def save_data(self, data):
         res_meta_data = self.__save_meta_data(data)
-        res_meta_rarity = self.__save_meta_rarity_data()
+        # res_meta_rarity = self.__save_meta_rarity_data()
 
-        if res_meta_data and res_meta_rarity:  # pragma no cover
+        # if res_meta_data and res_meta_rarity:  # pragma no cover
+        if res_meta_data:
+            self.__save_meta_rarity_data()
             self.__save_image_data()
             self.views[ImageExplorerView].show_success("SUCCESS")
 
