@@ -66,7 +66,7 @@ class RarityMetaModel:
                 f.write("}\n\n")
 
     @staticmethod
-    def append_data(FILE_RARITY, rarity, new_data):
+    def append_data(rarity, new_data):
         data_input = RarityMetaModel.read_from_rarity_file()
         if RarityMetaModel.nft_name_available(new_data, data_input):
             data_input[ERarity(rarity).value].append(dict({new_data: new_data}))
@@ -78,4 +78,4 @@ class RarityMetaModel:
     def save(self):
         if not os.path.isfile(FILE_RARITY):
             RarityMetaModel.generate_init_data()
-        return RarityMetaModel.append_data(FILE_RARITY, self.rarity, self.item)
+        return RarityMetaModel.append_data(self.rarity, self.item)
