@@ -15,6 +15,8 @@ class RarityMetaModel:
     def generate_init_data():
         init_data = ""
         for enum_value in ERarity:
+            if enum_value is ERarity.NONE:
+                continue
             # generate json sections which store a dict
             init_data += f"export enum {enum_value.value}{{\n}}\n\n"
 
@@ -23,7 +25,11 @@ class RarityMetaModel:
 
     @staticmethod
     def nft_name_available(entry, input):
-        res = all(entry not in input[enum_value.value] for enum_value in ERarity)
+        res = all(
+            entry not in input[enum_value.value]
+            for enum_value in ERarity
+            if enum_value != ERarity.NONE
+        )
         return res
 
     @staticmethod
