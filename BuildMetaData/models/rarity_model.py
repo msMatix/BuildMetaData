@@ -16,7 +16,7 @@ class RarityMetaModel:
         init_data = ""
         for enum_value in ERarity:
             # generate json sections which store a dict
-            init_data += f"export enum {enum_value.value}{{\n}}\n"
+            init_data += f"export enum {enum_value.value}{{\n}}\n\n"
 
         with open(FILE_RARITY, "w") as f:
             f.write(init_data)
@@ -57,7 +57,7 @@ class RarityMetaModel:
                 for item in items:
                     for key, value in item.items():
                         f.write(f'    {key} = "{value}"\n')
-                f.write("}\n")
+                f.write("}\n\n")
 
     @staticmethod
     def append_data(FILE_RARITY, rarity, new_data):

@@ -545,9 +545,9 @@ def meta_data_none_json():
 @pytest.fixture(scope="function")
 def meta_data_rarity():
     data = (
-        "export enum {\n}\nexport enum Common{\n}\nexport enum Uncommon{\n}\nexport enum Rare{\n}\nexport enum Epic{\n    DARKFIRE_DUPLICATE = "
+        "export enum {\n}\n\nexport enum Common{\n}\n\nexport enum Uncommon{\n}\n\nexport enum Rare{\n}\n\nexport enum Epic{\n    DARKFIRE_DUPLICATE = "
         '"DARKFIRE_DUPLICATE"'
-        "\n}\nexport enum Legendary{\n}\nexport enum Unique{\n}\n"
+        "\n}\n\nexport enum Legendary{\n}\n\nexport enum Unique{\n}\n\n"
     )
     return data
 
