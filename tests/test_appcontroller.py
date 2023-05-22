@@ -35,8 +35,7 @@ from .fixtures import (
     meta_data_file_not_found,
     meta_data_none,
     meta_data_none_json,
-    meta_data_rarity_json,
-    meta_data_rarity_none,
+    meta_data_rarity,
     meta_data_wrong_armor,
     meta_data_wrong_shield,
     meta_data_wrong_weapon,
@@ -88,7 +87,7 @@ class TestAppControllerImageModell:
         self,
         mock_app_controller,
         meta_data_correct_duplicate,
-        meta_data_rarity_json,
+        meta_data_rarity,
         meta_data_correct_duplicate_uncommon,
         meta_data_correct_duplicate_json,
     ):
@@ -100,15 +99,15 @@ class TestAppControllerImageModell:
         # check if nft exist two times in the same rarity
         mock_app_controller.save_data(meta_data_correct_duplicate)
         with open(path_to_file) as f:
-            data = json.load(f)
-        assert data == meta_data_rarity_json
+            data = f.read()
+        assert data == meta_data_rarity
 
         # Check whether in the case of a new creation of an already existing nft only in the case of other rarity none is created
         mock_app_controller.save_data(meta_data_correct_duplicate_uncommon)
         with open(path_to_file) as f:
-            data = json.load(f)
-        assert data == meta_data_rarity_json
-
+            data = f.read()
+        assert data == meta_data_rarity
+        #
         path_to_json = f"./{PATH_META_DATA}DARKFIRE_DUPLICATE{FILE_JSON}"
         with open(path_to_json) as f:
             data = json.load(f)
@@ -261,8 +260,8 @@ class TestAppControllerImageModell:
             with open(path_to_file) as f:
                 data = json.load(f)
 
-    def test_false_no_rarity_selected(self, mock_app_controller, meta_data_rarity_none):
-        mock_app_controller.save_data(meta_data_rarity_none)
+    def test_false_no_rarity_selected(self, mock_app_controller, meta_data_rarity):
+        mock_app_controller.save_data(meta_data_rarity)
         path_to_file_png = f"./{PATH_RESULT_PNG}/DARKFIRE{IMAGE_PNG}"
         path_to_file_webp = f"./{PATH_RESULT_WEBP}/DARKFIRE{IMAGE_WEBP}"
 
