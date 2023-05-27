@@ -5,6 +5,9 @@ from ..common import FILE_RARITY
 from ..exception import NFTAlreadyExist
 from ..views.meta_data_types import ERarity
 
+type_script_enum_definition = "export enum "
+type_script_enum_value = "EEquipmentNames"
+
 
 @dataclass
 class RarityMetaModel:
@@ -18,7 +21,7 @@ class RarityMetaModel:
             if enum_value is ERarity.NONE:
                 continue
             # generate json sections which store a dict
-            init_data += f"export enum {enum_value.value}{{\n}}\n\n"
+            init_data += f"{type_script_enum_definition}{type_script_enum_value}{enum_value.value}{{\n}}\n\n"
 
         with open(FILE_RARITY, "w") as f:
             f.write(init_data)
@@ -42,7 +45,11 @@ class RarityMetaModel:
 
                 if line.endswith("{"):
                     words = line.split()
+                    # delete export enum
                     modified_line = " ".join(words[2:])
+                    # delete EEquipmentNames
+                    modified_line = modified_line.replace(type_script_enum_value, "")
+
                     current_section = modified_line[:-1]
                     input[current_section] = list([])  # war {}
                 elif line.endswith("}"):
@@ -59,7 +66,9 @@ class RarityMetaModel:
     def write_to_rarity_file(data):
         with open(FILE_RARITY, "w") as f:
             for section, items in data.items():
-                f.write(f"export enum {section}{{\n")
+                f.write(
+                    f"{type_script_enum_definition}{type_script_enum_value}{section}{{\n"
+                )
                 for item in items:
                     for key, value in item.items():
                         f.write(f'    {key} = "{value}"\n')
