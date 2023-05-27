@@ -24,7 +24,7 @@ PATH_IMAGES_BG = "background"
 
 ################################################################################
 # URL
-URL_LINK = "https://dev.api.valtreas.com/metadata/images/equipment/"
+URL_LINK = "https://dev.api.valtreas.com/equipment/image/"
 
 
 ################################################################################

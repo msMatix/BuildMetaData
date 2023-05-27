@@ -380,7 +380,7 @@ def meta_data_correct_json():
         {
             "name": "DARKFIRE",
             "description": "description",
-            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE",
+            "image_url": "https://dev.api.valtreas.com/equipment/image/DARKFIRE",
             "rarity": "Epic",
             "type": "Gun",
             "damage": 1,
@@ -401,7 +401,7 @@ def meta_data_correct_duplicate_json():
         {
             "name": "DARKFIRE_DUPLICATE",
             "description": "description",
-            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE_DUPLICATE",
+            "image_url": "https://dev.api.valtreas.com/equipment/image/DARKFIRE_DUPLICATE",
             "rarity": "Epic",
             "type": "Gun",
             "damage": 1,
@@ -422,7 +422,7 @@ def meta_data_correct_armor_json():
         {
             "name": "DARKFIRE_ARMOR",
             "description": "description",
-            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE_ARMOR",
+            "image_url": "https://dev.api.valtreas.com/equipment/image/DARKFIRE_ARMOR",
             "rarity": "Uncommon",
             "type": "Armor",
             "damage": "",
@@ -443,7 +443,7 @@ def meta_data_correct_shield_json():
         {
             "name": "DARKFIRE_SHIELD",
             "description": "description",
-            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE_SHIELD",
+            "image_url": "https://dev.api.valtreas.com/equipment/image/DARKFIRE_SHIELD",
             "rarity": "Uncommon",
             "type": "Shield",
             "damage": "",
@@ -464,7 +464,7 @@ def meta_data_correct_weapon_json():
         {
             "name": "DARKFIRE_WEAPON",
             "description": "description",
-            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE_WEAPON",
+            "image_url": "https://dev.api.valtreas.com/equipment/image/DARKFIRE_WEAPON",
             "rarity": "Uncommon",
             "type": "Bow",
             "damage": "1",
@@ -485,7 +485,7 @@ def meta_data_correct_no_special_attack_json():
         {
             "name": "DARKFIRE_NO_SPECIAL",
             "description": "description",
-            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE_NO_SPECIAL",
+            "image_url": "https://dev.api.valtreas.com/equipment/image/DARKFIRE_NO_SPECIAL",
             "rarity": "Epic",
             "type": "Gun",
             "damage": 1,
@@ -506,7 +506,7 @@ def meta_data_correct_no_optional_json():
         {
             "name": "DARKFIRE2",
             "description": "description",
-            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE2",
+            "image_url": "https://dev.api.valtreas.com/equipment/image/DARKFIRE2",
             "rarity": "Epic",
             "type": "Gun",
             "damage": "1",
@@ -527,7 +527,7 @@ def meta_data_none_json():
         {
             "name": "DARKFIRE_NONE",
             "description": "",
-            "image_url": "https://dev.api.valtreas.com/metadata/images/equipment/DARKFIRE",
+            "image_url": "https://dev.api.valtreas.com/equipment/image/DARKFIRE",
             "rarity": "Epic",
             "type": "",
             "damage": "",
