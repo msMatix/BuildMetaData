@@ -87,23 +87,25 @@ class ImageExplorerView(tk.Frame):
         self.message_label["text"] = ""
 
     def create_widgets_image_explorer(self):
-        button_prev = tk.Button(
+        self.button_prev = tk.Button(
             self,
             text="<< PREV",
             command=lambda: self.shift(-1),
             width=30,
             height=5,
+            state="disabled",
         )
-        button_prev.pack(side="left")
+        self.button_prev.pack(side="left")
 
-        button_next = tk.Button(
+        self.button_next = tk.Button(
             self,
             text="NEXT >>",
             command=lambda: self.shift(+1),
             width=30,
             height=5,
+            state="disabled",
         )
-        button_next.pack(side="left")
+        self.button_next.pack(side="left")
 
         button_change_path = tk.Button(
             self,
@@ -253,15 +255,16 @@ class ImageExplorerView(tk.Frame):
         label_description.place(x=80, y=280, anchor="center")
 
         # STORE
-        button_store = tk.Button(
+        self.button_store = tk.Button(
             self,
             text="STORE",
             command=lambda: self.save_meta_data_in_file(),
             width=30,
             height=5,
+            state="disabled",
         )
-        button_store.config(width=10)
-        button_store.place(x=100, y=500, anchor="center")
+        self.button_store.config(width=10)
+        self.button_store.place(x=100, y=500, anchor="center")
 
     ################################################################################
     # IMAGE EXPLORER
@@ -382,6 +385,11 @@ class ImageExplorerView(tk.Frame):
         self.input_field_name.delete(0, tk.END)
         self.input_field_description.delete("1.0", tk.END)
 
+    def enable_buttons_after_path_set(self):
+        self.button_store.config(state="normal")
+        self.button_prev.config(state="normal")
+        self.button_next.config(state="normal")
+
     ################################################################################
     # FILE EXPLORER
     def browse_files(self):
@@ -389,3 +397,4 @@ class ImageExplorerView(tk.Frame):
         if self.controller:
             self.controller.save_path_to_images(file_path)
         self.tkraise()
+        self.enable_buttons_after_path_set()
