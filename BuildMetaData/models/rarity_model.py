@@ -9,6 +9,11 @@ type_script_enum_definition = "export enum "
 type_script_enum_value = "EEquipmentNames"
 
 
+def count_words(text):
+    words = text.split()  # Split the string into a list of words
+    return len(words)
+
+
 @dataclass
 class RarityMetaModel:
     rarity: str = ""
@@ -46,7 +51,9 @@ class RarityMetaModel:
                 if line.endswith("{"):
                     words = line.split()
                     # delete export enum
-                    modified_line = " ".join(words[2:])
+                    modified_line = " ".join(
+                        words[count_words(type_script_enum_definition) :]
+                    )
                     # delete EEquipmentNames
                     modified_line = modified_line.replace(type_script_enum_value, "")
 
