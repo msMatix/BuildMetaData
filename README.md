@@ -1,14 +1,14 @@
 # BuildMetaData
+
 BuildMetaData is an app made for creating metadata from images individually. Also, with the app it is possible to add
-a different background for the image depending on the rarity. The app is based on the TkInter-Lib. So that the project 
-dependencies can be resolved correctly, Py-Poetry was used. 
+a different background for the image depending on the rarity. The app is based on the TkInter-Lib. So that the project
+dependencies can be resolved correctly, Py-Poetry was used.
 
-The folder structure is shown below. Note that the folders `image_bg_png`, `image_bg_webp` and `metadata` are generated 
-automatically. The folder, where the images (`image`) should be located and in which also a folder for the background 
-images (`background`) is, must be created manually. Keep in mind that the folder of the background images has to be a 
-subfolder of the image folder. It is helpful here that the equipment images are also created as subfolders (`equipment`) 
+The folder structure is shown below. Note that the folders `image_bg_png`, `image_bg_webp` and `metadata` are generated
+automatically. The folder, where the images (`image`) should be located and in which also a folder for the background
+images (`background`) is, must be created manually. Keep in mind that the folder of the background images has to be a
+subfolder of the image folder. It is helpful here that the equipment images are also created as subfolders (`equipment`)
 of the image folder.
-
 
 ```
 ├── BuildMetaData
@@ -24,22 +24,23 @@ of the image folder.
 └── tests
 ```
 
-
 # DEVELOPMENT
+
 # GENERAL
-The app is using TKinter that is why you have to install the tkinter framework. If you are using Paru as 
+
+The app is using TKinter that is why you have to install the tkinter framework. If you are using Paru as
 package installer type: `paru -Sy tk`
 
 ## RUN
 
-    # start 
+    # start
     # before each cmd run:
     make env # enables virtual env
 
-    # the app runs 
+    # the app runs
     make run
 
-    # the app tests 
+    # the app tests
     make test
 
     # the tests coverage
@@ -49,11 +50,12 @@ package installer type: `paru -Sy tk`
     make clean
 
 ## POETRY
-    # install poetry 
+
+    # install poetry
     curl -sSL https://install.python-poetry.org | python3 -
 
-    # activate poetry 
-    poetry shell 
+    # activate poetry
+    poetry shell
 
     # install dependencies
     poetry install
@@ -78,6 +80,3 @@ to commit messages via:
 Optionally, you may want to use
 [commitizen](https://github.com/commitizen-tools/commitizen) and `cz c` to
 construct your commit messages.
-
-
-
